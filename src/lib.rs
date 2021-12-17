@@ -9,5 +9,6 @@ pub mod host;
 pub mod id;
 pub mod plugin;
 pub mod process;
+pub mod stream;
 pub mod string_sizes;
 pub mod version;
