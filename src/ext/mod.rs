@@ -15,3 +15,4 @@ pub mod params;
 pub mod render;
 pub mod state;
 pub mod thread_check;
+pub mod timer_support;
