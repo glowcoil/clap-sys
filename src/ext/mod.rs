@@ -9,3 +9,4 @@ pub mod gui_win32;
 pub mod gui_x11;
 pub mod latency;
 pub mod log;
+pub mod note_name;
