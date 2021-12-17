@@ -8,3 +8,4 @@ pub mod gui_free_standing;
 pub mod gui_win32;
 pub mod gui_x11;
 pub mod latency;
+pub mod log;
