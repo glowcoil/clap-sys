@@ -26,6 +26,9 @@ pub struct clap_plugin_descriptor {
     pub plugin_type: u64,
 }
 
+unsafe impl Send for clap_plugin_descriptor {}
+unsafe impl Sync for clap_plugin_descriptor {}
+
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct clap_plugin {
