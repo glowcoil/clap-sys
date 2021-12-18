@@ -1,8 +1,67 @@
-use clap_sys::{host::*, plugin::*, version::*, process::*};
+use clap_sys::{events::*, ext::params::*, host::*, id::*, plugin::*, process::*, version::*};
 
 use std::ffi::{c_void, CStr};
 use std::os::raw::c_char;
 use std::ptr;
+
+mod params {
+    use super::*;
+
+    pub unsafe extern "C" fn count(_plugin: *const clap_plugin) -> u32 {
+        0
+    }
+
+    pub unsafe extern "C" fn get_info(
+        _plugin: *const clap_plugin,
+        _param_index: i32,
+        _param_info: *mut clap_param_info,
+    ) -> bool {
+        false
+    }
+
+    pub unsafe extern "C" fn get_value(
+        _plugin: *const clap_plugin,
+        _param_id: clap_id,
+        _value: *mut f64,
+    ) -> bool {
+        false
+    }
+
+    pub unsafe extern "C" fn value_to_text(
+        _plugin: *const clap_plugin,
+        _param_id: clap_id,
+        _value: f64,
+        _display: *mut c_char,
+        _size: u32,
+    ) -> bool {
+        false
+    }
+
+    pub unsafe extern "C" fn text_to_value(
+        _plugin: *const clap_plugin,
+        _param_id: clap_id,
+        _display: *const c_char,
+        _value: *mut f64,
+    ) -> bool {
+        false
+    }
+
+    pub unsafe extern "C" fn flush(
+        _plugin: *const clap_plugin,
+        _input_parameter_changes: *const clap_event_list,
+        _output_parameter_changes: *const clap_event_list,
+    ) {
+    }
+}
+
+static PLUGIN_PARAMS: clap_plugin_params = clap_plugin_params {
+    count: params::count,
+    get_info: params::get_info,
+    get_value: params::get_value,
+    value_to_text: params::value_to_text,
+    text_to_value: params::text_to_value,
+    flush: params::flush,
+};
 
 mod plugin {
     use super::*;
@@ -40,9 +99,13 @@ mod plugin {
 
     pub unsafe extern "C" fn get_extension(
         _plugin: *const clap_plugin,
-        _id: *const c_char,
+        id: *const c_char,
     ) -> *const c_void {
-        ptr::null()
+        if CStr::from_ptr(id) == CStr::from_ptr(CLAP_EXT_PARAMS) {
+            &PLUGIN_PARAMS as *const clap_plugin_params as *const c_void
+        } else {
+            ptr::null()
+        }
     }
 
     pub unsafe extern "C" fn on_main_thread(_plugin: *const clap_plugin) {}
