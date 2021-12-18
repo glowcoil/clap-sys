@@ -3,6 +3,13 @@ use crate::{host::*, process::*, version::*};
 use std::ffi::c_void;
 use std::os::raw::c_char;
 
+pub const CLAP_PLUGIN_INSTRUMENT: clap_plugin_type = 1 << 0;
+pub const CLAP_PLUGIN_AUDIO_EFFECT: clap_plugin_type = 1 << 1;
+pub const CLAP_PLUGIN_EVENT_EFFECT: clap_plugin_type = 1 << 2;
+pub const CLAP_PLUGIN_ANALYZER: clap_plugin_type = 1 << 3;
+
+pub type clap_plugin_type = i32;
+
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct clap_plugin_descriptor {
