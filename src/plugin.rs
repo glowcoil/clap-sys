@@ -41,7 +41,7 @@ pub struct clap_plugin {
         sample_rate: f64,
         min_frames_count: u32,
         max_frames_count: u32,
-    ),
+    ) -> bool,
     pub deactivate: unsafe extern "C" fn(plugin: *const clap_plugin),
     pub start_processing: unsafe extern "C" fn(plugin: *const clap_plugin) -> bool,
     pub stop_processing: unsafe extern "C" fn(plugin: *const clap_plugin),

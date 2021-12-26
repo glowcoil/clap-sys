@@ -5,7 +5,7 @@ use std::os::raw::c_char;
 pub const CLAP_EXT_FD_SUPPORT: *const c_char = b"clap.fd-support\0".as_ptr() as *const c_char;
 
 #[cfg(target_os = "windows")]
-pub type clap_fd = *mut c_void;
+pub type clap_fd = *mut ::core::ffi::c_void;
 #[cfg(not(target_os = "windows"))]
 pub type clap_fd = i32;
 
