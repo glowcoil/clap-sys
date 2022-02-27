@@ -8,6 +8,9 @@ pub struct clap_istream {
         unsafe extern "C" fn(stream: *mut clap_istream, buffer: *mut c_void, size: u64) -> i64,
 }
 
+unsafe impl Send for clap_istream {}
+unsafe impl Sync for clap_istream {}
+
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct clap_ostream {
@@ -15,3 +18,6 @@ pub struct clap_ostream {
     pub write:
         unsafe extern "C" fn(stream: *mut clap_ostream, buffer: *const c_void, size: u64) -> i64,
 }
+
+unsafe impl Send for clap_ostream {}
+unsafe impl Sync for clap_ostream {}

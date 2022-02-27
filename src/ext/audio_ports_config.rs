@@ -16,6 +16,9 @@ pub struct clap_audio_ports_config {
     pub output_port_type: *const c_char,
 }
 
+unsafe impl Send for clap_audio_ports_config {}
+unsafe impl Sync for clap_audio_ports_config {}
+
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct clap_plugin_audio_ports_config {

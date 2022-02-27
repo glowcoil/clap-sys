@@ -21,6 +21,9 @@ pub struct clap_audio_port_info {
     pub in_place_pair: clap_id,
 }
 
+unsafe impl Send for clap_audio_port_info {}
+unsafe impl Sync for clap_audio_port_info {}
+
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct clap_plugin_audio_ports {

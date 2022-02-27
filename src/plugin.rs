@@ -45,3 +45,6 @@ pub struct clap_plugin {
         unsafe extern "C" fn(plugin: *const clap_plugin, id: *const c_char) -> *const c_void,
     pub on_main_thread: unsafe extern "C" fn(plugin: *const clap_plugin),
 }
+
+unsafe impl Send for clap_plugin {}
+unsafe impl Sync for clap_plugin {}

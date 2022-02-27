@@ -18,3 +18,6 @@ pub struct clap_host {
     pub request_process: unsafe extern "C" fn(host: *const clap_host),
     pub request_callback: unsafe extern "C" fn(host: *const clap_host),
 }
+
+unsafe impl Send for clap_host {}
+unsafe impl Sync for clap_host {}

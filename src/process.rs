@@ -21,3 +21,6 @@ pub struct clap_process {
     pub in_events: *const clap_input_events,
     pub out_events: *const clap_output_events,
 }
+
+unsafe impl Send for clap_process {}
+unsafe impl Sync for clap_process {}

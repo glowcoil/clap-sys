@@ -79,6 +79,9 @@ pub struct clap_event_param_value {
     pub value: f64,
 }
 
+unsafe impl Send for clap_event_param_value {}
+unsafe impl Sync for clap_event_param_value {}
+
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct clap_event_param_mod {
@@ -90,6 +93,9 @@ pub struct clap_event_param_mod {
     pub channel: i16,
     pub amount: f64,
 }
+
+unsafe impl Send for clap_event_param_mod {}
+unsafe impl Sync for clap_event_param_mod {}
 
 pub const CLAP_TRANSPORT_HAS_TEMPO: clap_transport_flags = 1 << 0;
 pub const CLAP_TRANSPORT_HAS_BEATS_TIMELINE: clap_transport_flags = 1 << 1;
@@ -138,6 +144,9 @@ pub struct clap_event_midi_sysex {
     pub size: u32,
 }
 
+unsafe impl Send for clap_event_midi_sysex {}
+unsafe impl Sync for clap_event_midi_sysex {}
+
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct clap_event_midi2 {
@@ -157,6 +166,9 @@ pub struct clap_input_events {
     ) -> *const clap_event_header,
 }
 
+unsafe impl Send for clap_input_events {}
+unsafe impl Sync for clap_input_events {}
+
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct clap_output_events {
@@ -164,3 +176,6 @@ pub struct clap_output_events {
     pub push_back:
         unsafe extern "C" fn(list: *const clap_output_events, event: *const clap_event_header),
 }
+
+unsafe impl Send for clap_output_events {}
+unsafe impl Sync for clap_output_events {}
