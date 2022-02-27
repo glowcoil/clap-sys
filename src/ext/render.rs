@@ -12,5 +12,7 @@ pub type clap_plugin_render_mode = i32;
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct clap_plugin_render {
-    pub set: unsafe extern "C" fn(plugin: *const clap_plugin, mode: clap_plugin_render_mode),
+    pub has_hard_realtime_requirement: unsafe extern "C" fn(plugin: *const clap_plugin) -> bool,
+    pub set:
+        unsafe extern "C" fn(plugin: *const clap_plugin, mode: clap_plugin_render_mode) -> bool,
 }

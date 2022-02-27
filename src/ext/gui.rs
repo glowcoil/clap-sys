@@ -9,13 +9,13 @@ pub const CLAP_EXT_GUI: *const c_char = b"clap.gui\0".as_ptr() as *const c_char;
 pub struct clap_plugin_gui {
     pub create: unsafe extern "C" fn(plugin: *const clap_plugin) -> bool,
     pub destroy: unsafe extern "C" fn(plugin: *const clap_plugin),
-    pub set_scale: unsafe extern "C" fn(plugin: *const clap_plugin, scale: f64),
+    pub set_scale: unsafe extern "C" fn(plugin: *const clap_plugin, scale: f64) -> bool,
     pub get_size:
         unsafe extern "C" fn(plugin: *const clap_plugin, width: *mut u32, height: *mut u32) -> bool,
     pub can_resize: unsafe extern "C" fn(plugin: *const clap_plugin) -> bool,
     pub round_size:
         unsafe extern "C" fn(plugin: *const clap_plugin, width: *mut u32, height: *mut u32),
-    pub set_size: unsafe extern "C" fn(plugin: *const clap_plugin, width: u32, height: u32),
+    pub set_size: unsafe extern "C" fn(plugin: *const clap_plugin, width: u32, height: u32) -> bool,
     pub show: unsafe extern "C" fn(plugin: *const clap_plugin),
     pub hide: unsafe extern "C" fn(plugin: *const clap_plugin),
 }
@@ -24,4 +24,6 @@ pub struct clap_plugin_gui {
 #[derive(Copy, Clone)]
 pub struct clap_host_gui {
     pub resize: unsafe extern "C" fn(host: *const clap_host, width: u32, height: u32) -> bool,
+    pub request_show: unsafe extern "C" fn(host: *const clap_host),
+    pub request_hide: unsafe extern "C" fn(host: *const clap_host),
 }

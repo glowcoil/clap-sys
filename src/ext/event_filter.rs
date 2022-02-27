@@ -7,8 +7,11 @@ pub const CLAP_EXT_EVENT_FILTER: *const c_char = b"clap.event-filter\0".as_ptr()
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct clap_plugin_event_filter {
-    pub accepts:
-        unsafe extern "C" fn(plugin: *const clap_plugin, event_type: clap_event_type) -> bool,
+    pub accepts: unsafe extern "C" fn(
+        plugin: *const clap_plugin,
+        space_id: u16,
+        event_type: clap_event_type,
+    ) -> bool,
 }
 
 #[repr(C)]

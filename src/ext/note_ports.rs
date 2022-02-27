@@ -4,10 +4,19 @@ use std::os::raw::c_char;
 
 pub const CLAP_EXT_NOTE_PORTS: *const c_char = b"clap.note-ports\0".as_ptr() as *const c_char;
 
+pub const CLAP_NOTE_DIALECT_CLAP: clap_note_dialect = 1 << 0;
+pub const CLAP_NOTE_DIALECT_MIDI: clap_note_dialect = 1 << 1;
+pub const CLAP_NOTE_DIALECT_MIDI_MPE: clap_note_dialect = 1 << 2;
+pub const CLAP_NOTE_DIALECT_MIDI2: clap_note_dialect = 1 << 3;
+
+pub type clap_note_dialect = u32;
+
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct clap_note_port_info {
     pub id: clap_id,
+    pub supported_dialects: clap_note_dialect,
+    pub preferred_dialect: clap_note_dialect,
     pub name: [c_char; CLAP_NAME_SIZE],
 }
 
@@ -29,5 +38,6 @@ pub const CLAP_NOTE_PORTS_RESCAN_NAMES: u32 = 1 << 1;
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct clap_host_note_ports {
+    pub supported_dialects: unsafe extern "C" fn(host: *const clap_host) -> clap_note_dialect,
     pub rescan: unsafe extern "C" fn(host: *const clap_host, flags: u32),
 }

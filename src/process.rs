@@ -11,13 +11,13 @@ pub type clap_process_status = i32;
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct clap_process {
-    pub steady_time: u64,
+    pub steady_time: i64,
     pub frames_count: u32,
     pub transport: *const clap_event_transport,
     pub audio_inputs: *const clap_audio_buffer,
-    pub audio_outputs: *const clap_audio_buffer,
+    pub audio_outputs: *mut clap_audio_buffer,
     pub audio_inputs_count: u32,
     pub audio_outputs_count: u32,
-    pub in_events: *const clap_event_list,
-    pub out_events: *const clap_event_list,
+    pub in_events: *const clap_input_events,
+    pub out_events: *const clap_output_events,
 }
