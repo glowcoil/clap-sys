@@ -1,4 +1,7 @@
-use clap_sys::{events::*, ext::params::*, host::*, id::*, plugin::*, process::*, version::*};
+use clap_sys::{
+    entry::*, events::*, ext::params::*, host::*, id::*, plugin::*, plugin_factory::*, process::*,
+    version::*,
+};
 
 use std::ffi::{c_void, CStr};
 use std::os::raw::c_char;
@@ -48,8 +51,8 @@ mod params {
 
     pub unsafe extern "C" fn flush(
         _plugin: *const clap_plugin,
-        _input_parameter_changes: *const clap_event_list,
-        _output_parameter_changes: *const clap_event_list,
+        _in_: *const clap_input_events,
+        _out: *const clap_output_events,
     ) {
     }
 }
@@ -79,7 +82,8 @@ mod plugin {
         _sample_rate: f64,
         _min_frames_count: u32,
         _max_frames_count: u32,
-    ) {
+    ) -> bool {
+        true
     }
 
     pub unsafe extern "C" fn deactivate(_plugin: *const clap_plugin) {}
@@ -121,22 +125,20 @@ static PLUGIN_DESCRIPTOR: clap_plugin_descriptor = clap_plugin_descriptor {
     support_url: b"\0".as_ptr() as *const c_char,
     version: b"\0".as_ptr() as *const c_char,
     description: b"\0".as_ptr() as *const c_char,
-    keywords: b"\0".as_ptr() as *const c_char,
-    plugin_type: CLAP_PLUGIN_AUDIO_EFFECT as u64,
+    features: &[ptr::null()] as *const *const c_char,
 };
 
-mod entry {
+mod factory {
     use super::*;
 
-    pub unsafe extern "C" fn init(_plugin_path: *const c_char) {}
-
-    pub unsafe extern "C" fn deinit() {}
-
-    pub unsafe extern "C" fn get_plugin_count() -> u32 {
+    pub unsafe extern "C" fn get_plugin_count(_factory: *const clap_plugin_factory) -> u32 {
         1
     }
 
-    pub unsafe extern "C" fn get_plugin_descriptor(index: u32) -> *const clap_plugin_descriptor {
+    pub unsafe extern "C" fn get_plugin_descriptor(
+        _factory: *const clap_plugin_factory,
+        index: u32,
+    ) -> *const clap_plugin_descriptor {
         match index {
             0 => &PLUGIN_DESCRIPTOR,
             _ => ptr::null(),
@@ -144,6 +146,7 @@ mod entry {
     }
 
     pub unsafe extern "C" fn create_plugin(
+        _factory: *const clap_plugin_factory,
         _host: *const clap_host,
         plugin_id: *const c_char,
     ) -> *const clap_plugin {
@@ -165,18 +168,30 @@ mod entry {
             ptr::null()
         }
     }
+}
 
-    pub unsafe extern "C" fn get_invalidation_source_count() -> u32 {
-        0
+static PLUGIN_FACTORY: clap_plugin_factory = clap_plugin_factory {
+    get_plugin_count: factory::get_plugin_count,
+    get_plugin_descriptor: factory::get_plugin_descriptor,
+    create_plugin: factory::create_plugin,
+};
+
+mod entry {
+    use super::*;
+
+    pub unsafe extern "C" fn init(_plugin_path: *const c_char) -> bool {
+        true
     }
 
-    pub unsafe extern "C" fn get_invalidation_source(
-        _index: u32,
-    ) -> *const clap_plugin_invalidation_source {
-        ptr::null()
-    }
+    pub unsafe extern "C" fn deinit() {}
 
-    pub unsafe extern "C" fn refresh() {}
+    pub unsafe extern "C" fn get_factory(factory_id: *const c_char) -> *const c_void {
+        if CStr::from_ptr(factory_id) == CStr::from_ptr(CLAP_PLUGIN_FACTORY_ID) {
+            &PLUGIN_FACTORY as *const clap_plugin_factory as *const c_void
+        } else {
+            ptr::null()
+        }
+    }
 }
 
 #[allow(non_upper_case_globals)]
@@ -185,10 +200,5 @@ static clap_plugin_entry: clap_plugin_entry = clap_plugin_entry {
     clap_version: CLAP_VERSION,
     init: entry::init,
     deinit: entry::deinit,
-    get_plugin_count: entry::get_plugin_count,
-    get_plugin_descriptor: entry::get_plugin_descriptor,
-    create_plugin: entry::create_plugin,
-    get_invalidation_source_count: entry::get_invalidation_source_count,
-    get_invalidation_source: entry::get_invalidation_source,
-    refresh: entry::refresh,
+    get_factory: entry::get_factory,
 };
