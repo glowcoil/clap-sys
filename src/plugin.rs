@@ -37,6 +37,7 @@ pub struct clap_plugin {
     pub deactivate: unsafe extern "C" fn(plugin: *const clap_plugin),
     pub start_processing: unsafe extern "C" fn(plugin: *const clap_plugin) -> bool,
     pub stop_processing: unsafe extern "C" fn(plugin: *const clap_plugin),
+    pub reset: unsafe extern "C" fn(plugin: *const clap_plugin),
     pub process: unsafe extern "C" fn(
         plugin: *const clap_plugin,
         process: *const clap_process,
