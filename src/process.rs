@@ -4,6 +4,7 @@ use crate::events::*;
 pub const CLAP_PROCESS_ERROR: clap_process_status = 0;
 pub const CLAP_PROCESS_CONTINUE: clap_process_status = 1;
 pub const CLAP_PROCESS_CONTINUE_IF_NOT_QUIET: clap_process_status = 2;
+pub const CLAP_PROCESS_TAIL: clap_process_status = 3;
 pub const CLAP_PROCESS_SLEEP: clap_process_status = 3;
 
 pub type clap_process_status = i32;

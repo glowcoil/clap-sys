@@ -36,11 +36,16 @@ pub struct clap_plugin_audio_ports {
     ) -> bool,
 }
 
-pub const CLAP_AUDIO_PORTS_RESCAN_ALL: u32 = 1 << 0;
-pub const CLAP_AUDIO_PORTS_RESCAN_NAMES: u32 = 1 << 1;
+pub const CLAP_AUDIO_PORTS_RESCAN_NAMES: u32 = 1 << 0;
+pub const CLAP_AUDIO_PORTS_RESCAN_FLAGS: u32 = 1 << 1;
+pub const CLAP_AUDIO_PORTS_RESCAN_CHANNEL_COUNT: u32 = 1 << 2;
+pub const CLAP_AUDIO_PORTS_RESCAN_PORT_TYPE: u32 = 1 << 3;
+pub const CLAP_AUDIO_PORTS_RESCAN_IN_PLACE_PAIR: u32 = 1 << 4;
+pub const CLAP_AUDIO_PORTS_RESCAN_LIST: u32 = 1 << 5;
 
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct clap_host_audio_ports {
+    pub is_rescan_flag_supported: unsafe extern "C" fn(host: *const clap_host, flag: u32) -> bool,
     pub rescan: unsafe extern "C" fn(host: *const clap_host, flags: u32),
 }

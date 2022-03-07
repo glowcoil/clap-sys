@@ -173,8 +173,10 @@ unsafe impl Sync for clap_input_events {}
 #[derive(Copy, Clone)]
 pub struct clap_output_events {
     pub ctx: *mut c_void,
-    pub push_back:
-        unsafe extern "C" fn(list: *const clap_output_events, event: *const clap_event_header),
+    pub try_push: unsafe extern "C" fn(
+        list: *const clap_output_events,
+        event: *const clap_event_header,
+    ) -> bool,
 }
 
 unsafe impl Send for clap_output_events {}

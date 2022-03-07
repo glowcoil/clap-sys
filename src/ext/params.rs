@@ -15,7 +15,7 @@ pub const CLAP_PARAM_IS_BYPASS: clap_param_info_flags = (1 << 6) | CLAP_PARAM_IS
 pub const CLAP_PARAM_IS_READONLY: clap_param_info_flags = 1 << 7;
 pub const CLAP_PARAM_IS_MODULATABLE: clap_param_info_flags = 1 << 8;
 pub const CLAP_PARAM_REQUIRES_PROCESS: clap_param_info_flags = 1 << 9;
-pub const CLAP_PARAM_NOT_AUTOMATABLE: clap_param_info_flags = 1 << 10;
+pub const CLAP_PARAM_IS_AUTOMATABLE: clap_param_info_flags = 1 << 10;
 
 pub type clap_param_info_flags = u32;
 
