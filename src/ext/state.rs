@@ -7,8 +7,8 @@ pub const CLAP_EXT_STATE: *const c_char = b"clap.state\0".as_ptr() as *const c_c
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct clap_plugin_state {
-    pub save: unsafe extern "C" fn(plugin: *const clap_plugin, stream: *mut clap_ostream) -> bool,
-    pub load: unsafe extern "C" fn(plugin: *const clap_plugin, stream: *mut clap_istream) -> bool,
+    pub save: unsafe extern "C" fn(plugin: *const clap_plugin, stream: *const clap_ostream) -> bool,
+    pub load: unsafe extern "C" fn(plugin: *const clap_plugin, stream: *const clap_istream) -> bool,
 }
 
 #[repr(C)]
