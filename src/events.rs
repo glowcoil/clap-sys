@@ -15,9 +15,7 @@ pub struct clap_event_header {
 pub const CLAP_CORE_EVENT_SPACE_ID: u16 = 0;
 
 pub const CLAP_EVENT_IS_LIVE: clap_event_flags = 1 << 0;
-pub const CLAP_EVENT_BEGIN_ADJUST: clap_event_flags = 1 << 1;
-pub const CLAP_EVENT_END_ADJUST: clap_event_flags = 1 << 2;
-pub const CLAP_EVENT_SHOULD_RECORD: clap_event_flags = 1 << 3;
+pub const CLAP_EVENT_DONT_RECORD: clap_event_flags = 1 << 1;
 
 pub type clap_event_flags = u32;
 
@@ -28,10 +26,12 @@ pub const CLAP_EVENT_NOTE_END: clap_event_type = 3;
 pub const CLAP_EVENT_NOTE_EXPRESSION: clap_event_type = 4;
 pub const CLAP_EVENT_PARAM_VALUE: clap_event_type = 5;
 pub const CLAP_EVENT_PARAM_MOD: clap_event_type = 6;
-pub const CLAP_EVENT_TRANSPORT: clap_event_type = 7;
-pub const CLAP_EVENT_MIDI: clap_event_type = 8;
-pub const CLAP_EVENT_MIDI_SYSEX: clap_event_type = 9;
-pub const CLAP_EVENT_MIDI2: clap_event_type = 10;
+pub const CLAP_EVENT_PARAM_GESTURE_BEGIN: clap_event_type = 7;
+pub const CLAP_EVENT_PARAM_GESTURE_END: clap_event_type = 8;
+pub const CLAP_EVENT_TRANSPORT: clap_event_type = 9;
+pub const CLAP_EVENT_MIDI: clap_event_type = 10;
+pub const CLAP_EVENT_MIDI_SYSEX: clap_event_type = 11;
+pub const CLAP_EVENT_MIDI2: clap_event_type = 12;
 
 pub type clap_event_type = u16;
 
@@ -95,6 +95,16 @@ pub struct clap_event_param_mod {
 
 unsafe impl Send for clap_event_param_mod {}
 unsafe impl Sync for clap_event_param_mod {}
+
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct clap_event_param_gesture {
+    pub header: clap_event_header,
+    pub param_id: clap_id,
+}
+
+unsafe impl Send for clap_event_param_gesture {}
+unsafe impl Sync for clap_event_param_gesture {}
 
 pub const CLAP_TRANSPORT_HAS_TEMPO: clap_transport_flags = 1 << 0;
 pub const CLAP_TRANSPORT_HAS_BEATS_TIMELINE: clap_transport_flags = 1 << 1;
