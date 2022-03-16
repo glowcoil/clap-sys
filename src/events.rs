@@ -49,8 +49,8 @@ pub const CLAP_NOTE_EXPRESSION_VOLUME: clap_note_expression = 0;
 pub const CLAP_NOTE_EXPRESSION_PAN: clap_note_expression = 1;
 pub const CLAP_NOTE_EXPRESSION_TUNING: clap_note_expression = 2;
 pub const CLAP_NOTE_EXPRESSION_VIBRATO: clap_note_expression = 3;
-pub const CLAP_NOTE_EXPRESSION_EXPRESSION: clap_note_expression = 5;
-pub const CLAP_NOTE_EXPRESSION_BRIGHTNESS: clap_note_expression = 4;
+pub const CLAP_NOTE_EXPRESSION_EXPRESSION: clap_note_expression = 4;
+pub const CLAP_NOTE_EXPRESSION_BRIGHTNESS: clap_note_expression = 5;
 pub const CLAP_NOTE_EXPRESSION_PRESSURE: clap_note_expression = 6;
 
 pub type clap_note_expression = i32;
