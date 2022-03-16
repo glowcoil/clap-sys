@@ -64,8 +64,9 @@ pub struct clap_plugin_gui {
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct clap_host_gui {
-    pub resize: unsafe extern "C" fn(host: *const clap_host, width: u32, height: u32) -> bool,
-    pub request_show: unsafe extern "C" fn(host: *const clap_host),
-    pub request_hide: unsafe extern "C" fn(host: *const clap_host),
+    pub request_resize:
+        unsafe extern "C" fn(host: *const clap_host, width: u32, height: u32) -> bool,
+    pub request_show: unsafe extern "C" fn(host: *const clap_host) -> bool,
+    pub request_hide: unsafe extern "C" fn(host: *const clap_host) -> bool,
     pub closed: unsafe extern "C" fn(host: *const clap_host, was_destroyed: bool),
 }
