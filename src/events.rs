@@ -103,9 +103,6 @@ pub struct clap_event_param_gesture {
     pub param_id: clap_id,
 }
 
-unsafe impl Send for clap_event_param_gesture {}
-unsafe impl Sync for clap_event_param_gesture {}
-
 pub const CLAP_TRANSPORT_HAS_TEMPO: clap_transport_flags = 1 << 0;
 pub const CLAP_TRANSPORT_HAS_BEATS_TIMELINE: clap_transport_flags = 1 << 1;
 pub const CLAP_TRANSPORT_HAS_SECONDS_TIMELINE: clap_transport_flags = 1 << 2;
