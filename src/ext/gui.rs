@@ -21,7 +21,7 @@ pub struct clap_window {
     pub specific: clap_window_handle,
 }
 
-/// Defined as an anonymous union in [`clap_window` ]in the C-version.
+/// Defined as an anonymous union in [`clap_window`] in the C-version.
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union clap_window_handle {
