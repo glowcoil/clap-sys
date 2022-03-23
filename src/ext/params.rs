@@ -38,7 +38,7 @@ pub struct clap_plugin_params {
     pub count: unsafe extern "C" fn(plugin: *const clap_plugin) -> u32,
     pub get_info: unsafe extern "C" fn(
         plugin: *const clap_plugin,
-        param_index: i32,
+        param_index: u32,
         param_info: *mut clap_param_info,
     ) -> bool,
     pub get_value: unsafe extern "C" fn(

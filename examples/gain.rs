@@ -16,7 +16,7 @@ mod params {
 
     pub unsafe extern "C" fn get_info(
         _plugin: *const clap_plugin,
-        _param_index: i32,
+        _param_index: u32,
         _param_info: *mut clap_param_info,
     ) -> bool {
         false
