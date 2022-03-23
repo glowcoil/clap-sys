@@ -94,6 +94,8 @@ mod plugin {
 
     pub unsafe extern "C" fn stop_processing(_plugin: *const clap_plugin) {}
 
+    pub unsafe extern "C" fn reset(_plugin: *const clap_plugin) {}
+
     pub unsafe extern "C" fn process(
         _plugin: *const clap_plugin,
         _process: *const clap_process,
@@ -160,6 +162,7 @@ mod factory {
                 deactivate: plugin::deactivate,
                 start_processing: plugin::start_processing,
                 stop_processing: plugin::stop_processing,
+                reset: plugin::reset,
                 process: plugin::process,
                 get_extension: plugin::get_extension,
                 on_main_thread: plugin::on_main_thread,
