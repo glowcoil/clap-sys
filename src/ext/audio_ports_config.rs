@@ -10,10 +10,17 @@ pub const CLAP_EXT_AUDIO_PORTS_CONFIG: *const c_char =
 pub struct clap_audio_ports_config {
     pub id: clap_id,
     pub name: [c_char; CLAP_NAME_SIZE],
-    pub input_channel_count: u32,
-    pub input_port_type: *const c_char,
-    pub output_channel_count: u32,
-    pub output_port_type: *const c_char,
+
+    pub input_port_count: u32,
+    pub output_port_count: u32,
+
+    pub has_main_input_channel: bool,
+    pub main_input_channel_count: u32,
+    pub main_input_port_type: *const c_char,
+
+    pub has_main_output_channel: bool,
+    pub main_output_channel_count: u32,
+    pub main_output_port_type: *const c_char,
 }
 
 unsafe impl Send for clap_audio_ports_config {}
