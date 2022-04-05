@@ -8,7 +8,9 @@ pub const CLAP_PORT_MONO: *const c_char = b"mono\0".as_ptr() as *const c_char;
 pub const CLAP_PORT_STEREO: *const c_char = b"stereo\0".as_ptr() as *const c_char;
 
 pub const CLAP_AUDIO_PORT_IS_MAIN: u32 = 1 << 0;
-pub const CLAP_AUDIO_PORTS_PREFERS_64BITS: u32 = 1 << 1;
+pub const CLAP_AUDIO_PORT_SUPPORTS_64BITS: u32 = 1 << 1;
+// This will presumably be renamed to `CLAP_AUDIO_PORT_PREFERS_64BITS` in a next release
+pub const CLAP_AUDIO_PORTS_PREFERS_64BITS: u32 = 1 << 2;
 
 #[repr(C)]
 #[derive(Copy, Clone)]

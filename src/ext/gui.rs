@@ -39,8 +39,21 @@ unsafe impl Sync for clap_window_handle {}
 
 #[repr(C)]
 #[derive(Copy, Clone)]
+pub struct clap_gui_resize_hints {
+    pub preseve_aspect_ratio: bool,
+    pub aspect_ratio_width: u32,
+    pub aspect_ratio_height: u32,
+}
+
+#[repr(C)]
+#[derive(Copy, Clone)]
 pub struct clap_plugin_gui {
     pub is_api_supported: unsafe extern "C" fn(
+        plugin: *const clap_plugin,
+        api: *const c_char,
+        is_floating: bool,
+    ) -> bool,
+    pub get_preferred_api: unsafe extern "C" fn(
         plugin: *const clap_plugin,
         api: *const c_char,
         is_floating: bool,
@@ -55,6 +68,8 @@ pub struct clap_plugin_gui {
     pub get_size:
         unsafe extern "C" fn(plugin: *const clap_plugin, width: *mut u32, height: *mut u32) -> bool,
     pub can_resize: unsafe extern "C" fn(plugin: *const clap_plugin) -> bool,
+    pub get_resize_hints:
+        unsafe extern "C" fn(plugin: *const clap_plugin, hints: *mut clap_gui_resize_hints) -> bool,
     pub adjust_size:
         unsafe extern "C" fn(plugin: *const clap_plugin, width: *mut u32, height: *mut u32) -> bool,
     pub set_size: unsafe extern "C" fn(plugin: *const clap_plugin, width: u32, height: u32) -> bool,
@@ -70,6 +85,7 @@ pub struct clap_plugin_gui {
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct clap_host_gui {
+    pub resize_hints_changed: unsafe extern "C" fn(host: *const clap_host),
     pub request_resize:
         unsafe extern "C" fn(host: *const clap_host, width: u32, height: u32) -> bool,
     pub request_show: unsafe extern "C" fn(host: *const clap_host) -> bool,
