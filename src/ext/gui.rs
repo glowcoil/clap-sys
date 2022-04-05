@@ -21,6 +21,9 @@ pub struct clap_window {
     pub specific: clap_window_handle,
 }
 
+unsafe impl Send for clap_window {}
+unsafe impl Sync for clap_window {}
+
 /// Defined as an anonymous union in [`clap_window`] in the C-version.
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -30,6 +33,9 @@ pub union clap_window_handle {
     pub win32: clap_hwnd,
     pub ptr: *mut c_void,
 }
+
+unsafe impl Send for clap_window_handle {}
+unsafe impl Sync for clap_window_handle {}
 
 #[repr(C)]
 #[derive(Copy, Clone)]
