@@ -55,8 +55,8 @@ pub struct clap_plugin_gui {
     ) -> bool,
     pub get_preferred_api: unsafe extern "C" fn(
         plugin: *const clap_plugin,
-        api: *const c_char,
-        is_floating: bool,
+        api: *mut *const c_char,
+        is_floating: *mut bool,
     ) -> bool,
     pub create: unsafe extern "C" fn(
         plugin: *const clap_plugin,
