@@ -7,3 +7,4 @@ pub mod preset_load;
 pub mod quick_controls;
 pub mod surround;
 pub mod track_info;
+pub mod transport_control;
