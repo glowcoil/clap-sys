@@ -8,3 +8,4 @@ pub mod quick_controls;
 pub mod surround;
 pub mod track_info;
 pub mod transport_control;
+pub mod tuning;
