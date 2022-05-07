@@ -5,3 +5,4 @@ pub mod file_reference;
 pub mod midi_mappings;
 pub mod preset_load;
 pub mod quick_controls;
+pub mod surround;
