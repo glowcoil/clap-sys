@@ -14,11 +14,11 @@ pub struct clap_audio_ports_config {
     pub input_port_count: u32,
     pub output_port_count: u32,
 
-    pub has_main_input_channel: bool,
+    pub has_main_input: bool,
     pub main_input_channel_count: u32,
     pub main_input_port_type: *const c_char,
 
-    pub has_main_output_channel: bool,
+    pub has_main_output: bool,
     pub main_output_channel_count: u32,
     pub main_output_port_type: *const c_char,
 }
