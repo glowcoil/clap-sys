@@ -9,3 +9,4 @@ pub mod surround;
 pub mod track_info;
 pub mod transport_control;
 pub mod tuning;
+pub mod voice_info;
