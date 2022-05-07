@@ -2,6 +2,7 @@
 
 pub mod audio_buffer;
 pub mod color;
+pub mod converters;
 pub mod entry;
 pub mod events;
 pub mod ext;
