@@ -40,6 +40,8 @@ unsafe impl Sync for clap_window_handle {}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct clap_gui_resize_hints {
+    pub can_resize_horizontally: bool,
+    pub can_resize_vertically: bool,
     pub preseve_aspect_ratio: bool,
     pub aspect_ratio_width: u32,
     pub aspect_ratio_height: u32,

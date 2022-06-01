@@ -18,7 +18,8 @@ pub struct clap_plugin_cv {
         is_input: bool,
         port_index: u32,
         channel_index: u32,
-    ) -> u32,
+        channel_type: *mut u32,
+    ) -> bool,
 }
 
 #[repr(C)]
