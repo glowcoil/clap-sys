@@ -3,7 +3,7 @@ use crate::{id::*, stream::*};
 use std::os::raw::c_char;
 
 pub const CLAP_VST3_CONVERTER_FACTORY_ID: *const c_char =
-    b"clap.vst3-converter-factory\0".as_ptr() as *const c_char;
+    b"clap.vst3-converter-factory/draft0\0".as_ptr() as *const c_char;
 
 #[repr(C)]
 #[derive(Copy, Clone)]

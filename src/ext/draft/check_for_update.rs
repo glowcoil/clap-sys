@@ -1,4 +1,4 @@
-use crate::host::*;
+use crate::{host::*, plugin::*};
 
 use std::os::raw::c_char;
 
@@ -11,7 +11,7 @@ pub struct clap_check_for_update_info {
     pub version: *const c_char,
     pub release_date: *const c_char,
     pub url: *const c_char,
-    pub is_stable: bool,
+    pub is_preview: bool,
 }
 
 unsafe impl Send for clap_check_for_update_info {}
@@ -20,9 +20,7 @@ unsafe impl Sync for clap_check_for_update_info {}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct clap_plugin_check_for_update {
-    // FIXME: This `clap_host` should probably be a `clap_plugin`, see
-    //        https://github.com/free-audio/clap/issues/79
-    pub check: unsafe extern "C" fn(plugin: *const clap_host, include_beta: bool),
+    pub check: unsafe extern "C" fn(plugin: *const clap_plugin, include_beta: bool),
 }
 
 #[repr(C)]

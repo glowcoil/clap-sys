@@ -11,7 +11,7 @@ pub struct clap_track_info {
     pub id: clap_id,
     pub index: i32,
     pub name: [c_char; CLAP_NAME_SIZE],
-    pub path: [c_char; CLAP_MODULE_SIZE],
+    pub path: [c_char; CLAP_PATH_SIZE],
     pub channel_count: i32,
     pub audio_port_type: *const c_char,
     pub color: clap_color,

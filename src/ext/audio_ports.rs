@@ -10,6 +10,7 @@ pub const CLAP_PORT_STEREO: *const c_char = b"stereo\0".as_ptr() as *const c_cha
 pub const CLAP_AUDIO_PORT_IS_MAIN: u32 = 1 << 0;
 pub const CLAP_AUDIO_PORT_SUPPORTS_64BITS: u32 = 1 << 1;
 pub const CLAP_AUDIO_PORT_PREFERS_64BITS: u32 = 1 << 2;
+pub const CLAP_AUDIO_PORT_REQUIRES_COMMON_SAMPLE_SIZE: u32 = 1 << 3;
 
 #[repr(C)]
 #[derive(Copy, Clone)]

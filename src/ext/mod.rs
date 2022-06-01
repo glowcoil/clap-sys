@@ -2,7 +2,6 @@ pub mod draft;
 
 pub mod audio_ports;
 pub mod audio_ports_config;
-pub mod event_filter;
 pub mod event_registry;
 pub mod gui;
 pub mod latency;

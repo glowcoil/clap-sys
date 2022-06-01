@@ -1,4 +1,4 @@
-use crate::{hash::*, host::*, id::*, plugin::*, string_sizes::*};
+use crate::{host::*, id::*, plugin::*, string_sizes::*};
 
 use std::os::raw::c_char;
 
@@ -12,7 +12,6 @@ pub const CLAP_QUICK_CONTROLS_COUNT: usize = 8;
 pub struct clap_quick_controls_page {
     pub id: clap_id,
     pub name: [c_char; CLAP_NAME_SIZE],
-    pub keywords: [c_char; CLAP_KEYWORDS_SIZE],
     pub param_ids: [clap_id; CLAP_QUICK_CONTROLS_COUNT],
 }
 
@@ -28,18 +27,11 @@ pub struct clap_plugin_quick_controls {
         page_index: u32,
         page: *mut clap_quick_controls_page,
     ) -> bool,
-    pub select: unsafe extern "C" fn(plugin: *const clap_plugin, page_id: clap_id),
-    pub get_selected: unsafe extern "C" fn(plugin: *const clap_plugin) -> clap_id,
 }
-
-pub const CLAP_QUICK_CONTROLS_PAGES_CHANGED: clap_quick_controls_changed_flags = 1 << 0;
-pub const CLAP_QUICK_CONTROLS_SELECTED_PAGE_CHANGED: clap_quick_controls_changed_flags = 1 << 1;
-
-pub type clap_quick_controls_changed_flags = u32;
 
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct clap_host_quick_controls {
-    pub changed:
-        unsafe extern "C" fn(host: *const clap_host, flags: clap_quick_controls_changed_flags),
+    pub changed: unsafe extern "C" fn(host: *const clap_host),
+    pub suggest_page: unsafe extern "C" fn(host: *const clap_host, page_id: clap_id),
 }
