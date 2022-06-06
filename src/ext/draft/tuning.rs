@@ -24,9 +24,11 @@ pub struct clap_tuning_info {
 unsafe impl Send for clap_tuning_info {}
 unsafe impl Sync for clap_tuning_info {}
 
+// NOTE: `clap_client_tuning` is almost certainly a typo and it should be `clap_plugin_tuning`
+//       instead
 #[repr(C)]
 #[derive(Copy, Clone)]
-pub struct clap_plugin_tuning {
+pub struct clap_client_tuning {
     pub changed: unsafe extern "C" fn(plugin: *const clap_plugin),
 }
 
