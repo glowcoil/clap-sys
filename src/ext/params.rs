@@ -11,14 +11,16 @@ pub const CLAP_PARAM_IS_HIDDEN: clap_param_info_flags = 1 << 2;
 pub const CLAP_PARAM_IS_READONLY: clap_param_info_flags = 1 << 3;
 pub const CLAP_PARAM_IS_BYPASS: clap_param_info_flags = 1 << 4;
 pub const CLAP_PARAM_IS_AUTOMATABLE: clap_param_info_flags = 1 << 5;
-pub const CLAP_PARAM_IS_AUTOMATABLE_PER_NOTE: clap_param_info_flags = 1 << 6;
-pub const CLAP_PARAM_IS_AUTOMATABLE_PER_CHANNEL: clap_param_info_flags = 1 << 7;
-pub const CLAP_PARAM_IS_AUTOMATABLE_PER_PORT: clap_param_info_flags = 1 << 8;
-pub const CLAP_PARAM_IS_MODULATABLE: clap_param_info_flags = 1 << 9;
-pub const CLAP_PARAM_IS_MODULATABLE_PER_NOTE: clap_param_info_flags = 1 << 10;
-pub const CLAP_PARAM_IS_MODULATABLE_PER_CHANNEL: clap_param_info_flags = 1 << 11;
-pub const CLAP_PARAM_IS_MODULATABLE_PER_PORT: clap_param_info_flags = 1 << 12;
-pub const CLAP_PARAM_REQUIRES_PROCESS: clap_param_info_flags = 1 << 13;
+pub const CLAP_PARAM_IS_AUTOMATABLE_PER_NOTE_ID: clap_param_info_flags = 1 << 6;
+pub const CLAP_PARAM_IS_AUTOMATABLE_PER_KEY: clap_param_info_flags = 1 << 7;
+pub const CLAP_PARAM_IS_AUTOMATABLE_PER_CHANNEL: clap_param_info_flags = 1 << 8;
+pub const CLAP_PARAM_IS_AUTOMATABLE_PER_PORT: clap_param_info_flags = 1 << 9;
+pub const CLAP_PARAM_IS_MODULATABLE: clap_param_info_flags = 1 << 10;
+pub const CLAP_PARAM_IS_MODULATABLE_PER_NOTE_ID: clap_param_info_flags = 1 << 11;
+pub const CLAP_PARAM_IS_MODULATABLE_PER_KEY: clap_param_info_flags = 1 << 12;
+pub const CLAP_PARAM_IS_MODULATABLE_PER_CHANNEL: clap_param_info_flags = 1 << 13;
+pub const CLAP_PARAM_IS_MODULATABLE_PER_PORT: clap_param_info_flags = 1 << 14;
+pub const CLAP_PARAM_REQUIRES_PROCESS: clap_param_info_flags = 1 << 15;
 
 pub type clap_param_info_flags = u32;
 

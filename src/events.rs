@@ -39,9 +39,10 @@ pub type clap_event_type = u16;
 #[derive(Copy, Clone)]
 pub struct clap_event_note {
     pub header: clap_event_header,
+    pub note_id: i32,
     pub port_index: i16,
-    pub key: i16,
     pub channel: i16,
+    pub key: i16,
     pub velocity: f64,
 }
 
@@ -60,9 +61,10 @@ pub type clap_note_expression = i32;
 pub struct clap_event_note_expression {
     pub header: clap_event_header,
     pub expression_id: clap_note_expression,
+    pub note_id: i32,
     pub port_index: i16,
-    pub key: i16,
     pub channel: i16,
+    pub key: i16,
     pub value: f64,
 }
 
@@ -72,9 +74,10 @@ pub struct clap_event_param_value {
     pub header: clap_event_header,
     pub param_id: clap_id,
     pub cookie: *mut c_void,
+    pub note_id: i32,
     pub port_index: i16,
-    pub key: i16,
     pub channel: i16,
+    pub key: i16,
     pub value: f64,
 }
 
@@ -87,9 +90,10 @@ pub struct clap_event_param_mod {
     pub header: clap_event_header,
     pub param_id: clap_id,
     pub cooke: *mut c_void,
+    pub note_id: i32,
     pub port_index: i16,
-    pub key: i16,
     pub channel: i16,
+    pub key: i16,
     pub amount: f64,
 }
 
