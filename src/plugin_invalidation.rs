@@ -12,7 +12,7 @@ unsafe impl Send for clap_plugin_invalidation_source {}
 unsafe impl Sync for clap_plugin_invalidation_source {}
 
 pub const CLAP_PLUGIN_INVALIDATION_FACTORY_ID: *const c_char =
-    b"clap.plugin-invalidation-factory\0".as_ptr() as *const c_char;
+    b"clap.plugin-invalidation-factory/draft0\0".as_ptr() as *const c_char;
 
 #[repr(C)]
 #[derive(Copy, Clone)]

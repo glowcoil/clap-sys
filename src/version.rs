@@ -7,7 +7,7 @@ pub struct clap_version {
 }
 
 pub const CLAP_VERSION_MAJOR: u32 = 0;
-pub const CLAP_VERSION_MINOR: u32 = 25;
+pub const CLAP_VERSION_MINOR: u32 = 26;
 pub const CLAP_VERSION_REVISION: u32 = 0;
 
 pub const CLAP_VERSION: clap_version = clap_version {

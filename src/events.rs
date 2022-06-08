@@ -133,8 +133,8 @@ pub struct clap_event_transport {
     pub loop_end_seconds: clap_sectime,
     pub bar_start: clap_beattime,
     pub bar_number: i32,
-    pub tsig_num: i16,
-    pub tsig_denom: i16,
+    pub tsig_num: u16,
+    pub tsig_denom: u16,
 }
 
 #[repr(C)]

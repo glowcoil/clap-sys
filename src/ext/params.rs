@@ -31,7 +31,7 @@ pub struct clap_param_info {
     pub flags: clap_param_info_flags,
     pub cookie: *mut c_void,
     pub name: [c_char; CLAP_NAME_SIZE],
-    pub module: [c_char; CLAP_MODULE_SIZE],
+    pub module: [c_char; CLAP_PATH_SIZE],
     pub min_value: f64,
     pub max_value: f64,
     pub default_value: f64,
