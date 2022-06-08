@@ -6,8 +6,8 @@ pub struct clap_version {
     pub revision: u32,
 }
 
-pub const CLAP_VERSION_MAJOR: u32 = 0;
-pub const CLAP_VERSION_MINOR: u32 = 26;
+pub const CLAP_VERSION_MAJOR: u32 = 1;
+pub const CLAP_VERSION_MINOR: u32 = 0;
 pub const CLAP_VERSION_REVISION: u32 = 0;
 
 pub const CLAP_VERSION: clap_version = clap_version {
@@ -17,5 +17,5 @@ pub const CLAP_VERSION: clap_version = clap_version {
 };
 
 pub const fn clap_version_is_compatible(version: clap_version) -> bool {
-    version.major == CLAP_VERSION_MAJOR && version.minor == CLAP_VERSION_MINOR
+    version.major >= 1
 }

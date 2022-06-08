@@ -1,6 +1,6 @@
 [package]
 name = "clap-sys"
-version = "0.26.0"
+version = "1.0.0"
 authors = ["Micah Johnston <micah@glowcoil.com>", "Robbert van der Helm <mail@robbertvanderhelm.nl"]
 edition = "2021"
 description = "Rust bindings for the CLAP audio plugin API"

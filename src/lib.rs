@@ -1,6 +1,5 @@
 #![allow(non_camel_case_types)]
 
-pub mod converters;
 pub mod ext;
 
 pub mod audio_buffer;
