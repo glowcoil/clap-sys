@@ -2,7 +2,7 @@ use crate::{host::*, plugin::*};
 
 use std::os::raw::c_char;
 
-pub const CLAP_EXT_POSIX_FD_SUPPORT: *const c_char = b"clap.fd-support\0".as_ptr() as *const c_char;
+pub const CLAP_EXT_POSIX_FD_SUPPORT: *const c_char = b"clap.posix-fd-support\0".as_ptr() as *const c_char;
 
 pub const CLAP_POSIX_FD_READ: clap_posix_fd_flags = 1 << 0;
 pub const CLAP_POSIX_FD_WRITE: clap_posix_fd_flags = 1 << 1;
