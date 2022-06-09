@@ -8,9 +8,9 @@ pub const CLAP_EXT_NOTE_NAME: *const c_char = b"clap.note-name\0".as_ptr() as *c
 #[derive(Copy, Clone)]
 pub struct clap_note_name {
     pub name: [c_char; CLAP_NAME_SIZE],
-    pub port: i32,
-    pub key: i32,
-    pub channel: i32,
+    pub port: i16,
+    pub key: i16,
+    pub channel: i16,
 }
 
 #[repr(C)]
