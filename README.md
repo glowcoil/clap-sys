@@ -1,6 +1,9 @@
 # clap-sys
 
-Rust bindings for the [CLAP](https://github.com/free-audio/clap) audio plugin API. Currently implements the base API and all of the non-draft extensions. The example loads successfully in the [example host](https://github.com/free-audio/clap-host).
+[![Cargo](https://img.shields.io/crates/v/clap-sys.svg)](https://crates.io/crates/clap-sys)
+[![Documentation](https://docs.rs/clap-sys/badge.svg)](https://docs.rs/clap-sys)
+
+Rust bindings for the [CLAP](https://cleveraudio.org/) audio plugin API.
 
 ## License
 
