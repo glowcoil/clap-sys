@@ -162,7 +162,7 @@ unsafe impl Sync for clap_event_midi_sysex {}
 pub struct clap_event_midi2 {
     pub header: clap_event_header,
     pub port_index: u16,
-    pub data: [u8; 4],
+    pub data: [u32; 4],
 }
 
 #[repr(C)]
