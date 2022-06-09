@@ -37,6 +37,9 @@ pub struct clap_param_info {
     pub default_value: f64,
 }
 
+unsafe impl Send for clap_param_info {}
+unsafe impl Sync for clap_param_info {}
+
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct clap_plugin_params {
