@@ -89,7 +89,7 @@ unsafe impl Sync for clap_event_param_value {}
 pub struct clap_event_param_mod {
     pub header: clap_event_header,
     pub param_id: clap_id,
-    pub cooke: *mut c_void,
+    pub cookie: *mut c_void,
     pub note_id: i32,
     pub port_index: i16,
     pub channel: i16,
