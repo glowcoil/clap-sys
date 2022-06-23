@@ -15,7 +15,7 @@ pub const CLAP_MIDI_MAPPING_NRPN: clap_midi_mapping_type = 3;
 pub type clap_midi_mapping_type = i32;
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_midi_mapping {
     pub channel: i32,
     pub number: i32,
@@ -23,7 +23,7 @@ pub struct clap_midi_mapping {
 }
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_plugin_midi_mappings {
     pub count: unsafe extern "C" fn(plugin: *const clap_plugin) -> u32,
     pub get: unsafe extern "C" fn(
@@ -34,7 +34,7 @@ pub struct clap_plugin_midi_mappings {
 }
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_host_midi_mappings {
     pub changed: unsafe extern "C" fn(host: *const clap_host),
 }

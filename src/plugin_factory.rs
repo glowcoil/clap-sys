@@ -6,7 +6,7 @@ pub const CLAP_PLUGIN_FACTORY_ID: *const c_char =
     b"clap.plugin-factory\0".as_ptr() as *const c_char;
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_plugin_factory {
     pub get_plugin_count: unsafe extern "C" fn(factory: *const clap_plugin_factory) -> u32,
     pub get_plugin_descriptor: unsafe extern "C" fn(

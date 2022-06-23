@@ -6,7 +6,7 @@ pub const CLAP_EXT_FILE_REFERENCE: *const c_char =
     b"clap.file-reference.draft/0\0".as_ptr() as *const c_char;
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_file_reference {
     pub resource_id: clap_id,
     pub belongs_to_plugin_collection: bool,
@@ -19,7 +19,7 @@ unsafe impl Send for clap_file_reference {}
 unsafe impl Sync for clap_file_reference {}
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_plugin_file_reference {
     pub count: unsafe extern "C" fn(plugin: *const clap_plugin) -> u32,
     pub get: unsafe extern "C" fn(
@@ -46,7 +46,7 @@ pub struct clap_plugin_file_reference {
 }
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_host_file_reference {
     pub changed: unsafe extern "C" fn(host: *const clap_host),
     pub set_dirty: unsafe extern "C" fn(host: *const clap_host, resource_id: clap_id),

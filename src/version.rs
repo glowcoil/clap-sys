@@ -1,5 +1,5 @@
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_version {
     pub major: u32,
     pub minor: u32,

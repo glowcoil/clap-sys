@@ -12,7 +12,7 @@ pub const CLAP_NOTE_DIALECT_MIDI2: clap_note_dialect = 1 << 3;
 pub type clap_note_dialect = u32;
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_note_port_info {
     pub id: clap_id,
     pub supported_dialects: clap_note_dialect,
@@ -21,7 +21,7 @@ pub struct clap_note_port_info {
 }
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_plugin_note_ports {
     pub count: unsafe extern "C" fn(plugin: *const clap_plugin, is_input: bool) -> u32,
     pub get: unsafe extern "C" fn(
@@ -36,7 +36,7 @@ pub const CLAP_NOTE_PORTS_RESCAN_ALL: u32 = 1 << 0;
 pub const CLAP_NOTE_PORTS_RESCAN_NAMES: u32 = 1 << 1;
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_host_note_ports {
     pub supported_dialects: unsafe extern "C" fn(host: *const clap_host) -> clap_note_dialect,
     pub rescan: unsafe extern "C" fn(host: *const clap_host, flags: u32),

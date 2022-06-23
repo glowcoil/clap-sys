@@ -26,7 +26,7 @@ pub const CLAP_SURROUND_TBC: u32 = 16;
 pub const CLAP_SURROUND_TBR: u32 = 17;
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_plugin_surround {
     pub get_channel_map: unsafe extern "C" fn(
         plugin: *const clap_plugin,
@@ -39,7 +39,7 @@ pub struct clap_plugin_surround {
 }
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_host_surround {
     pub changed: unsafe extern "C" fn(host: *const clap_host),
     pub get_preferred_channel_map: unsafe extern "C" fn(

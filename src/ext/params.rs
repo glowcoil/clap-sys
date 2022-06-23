@@ -25,7 +25,7 @@ pub const CLAP_PARAM_REQUIRES_PROCESS: clap_param_info_flags = 1 << 15;
 pub type clap_param_info_flags = u32;
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_param_info {
     pub id: clap_id,
     pub flags: clap_param_info_flags,
@@ -41,7 +41,7 @@ unsafe impl Send for clap_param_info {}
 unsafe impl Sync for clap_param_info {}
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_plugin_params {
     pub count: unsafe extern "C" fn(plugin: *const clap_plugin) -> u32,
     pub get_info: unsafe extern "C" fn(
@@ -88,7 +88,7 @@ pub const CLAP_PARAM_CLEAR_MODULATIONS: clap_param_clear_flags = 1 << 2;
 pub type clap_param_clear_flags = u32;
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_host_params {
     pub rescan: unsafe extern "C" fn(host: *const clap_host, flags: clap_param_rescan_flags),
     pub clear: unsafe extern "C" fn(

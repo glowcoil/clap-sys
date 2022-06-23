@@ -1,5 +1,5 @@
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_audio_buffer {
     pub data32: *const *const f32,
     pub data64: *const *const f64,
