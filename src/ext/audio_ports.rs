@@ -13,7 +13,7 @@ pub const CLAP_AUDIO_PORT_PREFERS_64BITS: u32 = 1 << 2;
 pub const CLAP_AUDIO_PORT_REQUIRES_COMMON_SAMPLE_SIZE: u32 = 1 << 3;
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_audio_port_info {
     pub id: clap_id,
     pub name: [c_char; CLAP_NAME_SIZE],
@@ -27,7 +27,7 @@ unsafe impl Send for clap_audio_port_info {}
 unsafe impl Sync for clap_audio_port_info {}
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_plugin_audio_ports {
     pub count: unsafe extern "C" fn(plugin: *const clap_plugin, is_input: bool) -> u32,
     pub get: unsafe extern "C" fn(
@@ -46,7 +46,7 @@ pub const CLAP_AUDIO_PORTS_RESCAN_IN_PLACE_PAIR: u32 = 1 << 4;
 pub const CLAP_AUDIO_PORTS_RESCAN_LIST: u32 = 1 << 5;
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_host_audio_ports {
     pub is_rescan_flag_supported: unsafe extern "C" fn(host: *const clap_host, flag: u32) -> bool,
     pub rescan: unsafe extern "C" fn(host: *const clap_host, flags: u32),

@@ -6,7 +6,7 @@ pub const CLAP_EXT_AUDIO_PORTS_CONFIG: *const c_char =
     b"clap.audio-ports-config\0".as_ptr() as *const c_char;
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_audio_ports_config {
     pub id: clap_id,
     pub name: [c_char; CLAP_NAME_SIZE],
@@ -27,7 +27,7 @@ unsafe impl Send for clap_audio_ports_config {}
 unsafe impl Sync for clap_audio_ports_config {}
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_plugin_audio_ports_config {
     pub count: unsafe extern "C" fn(plugin: *const clap_plugin) -> u32,
     pub get: unsafe extern "C" fn(
@@ -39,7 +39,7 @@ pub struct clap_plugin_audio_ports_config {
 }
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_host_audio_ports_config {
     pub rescan: unsafe extern "C" fn(host: *const clap_host),
 }

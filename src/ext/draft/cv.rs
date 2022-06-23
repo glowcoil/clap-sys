@@ -11,7 +11,7 @@ pub const CLAP_CV_GATE: u32 = 1;
 pub const CLAP_CV_PITCH: u32 = 2;
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_plugin_cv {
     pub get_channel_type: unsafe extern "C" fn(
         plugin: *const clap_plugin,
@@ -23,7 +23,7 @@ pub struct clap_plugin_cv {
 }
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_host_cv {
     pub changed: unsafe extern "C" fn(host: *const clap_host),
 }

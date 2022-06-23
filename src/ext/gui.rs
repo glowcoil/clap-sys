@@ -15,7 +15,7 @@ pub type clap_nsview = *mut c_void;
 pub type clap_xwnd = c_ulong;
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_window {
     pub api: *const c_char,
     pub specific: clap_window_handle,
@@ -26,7 +26,7 @@ unsafe impl Sync for clap_window {}
 
 /// Defined as an anonymous union in [`clap_window`] in the C-version.
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub union clap_window_handle {
     pub cocoa: clap_nsview,
     pub x11: clap_xwnd,
@@ -38,7 +38,7 @@ unsafe impl Send for clap_window_handle {}
 unsafe impl Sync for clap_window_handle {}
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_gui_resize_hints {
     pub can_resize_horizontally: bool,
     pub can_resize_vertically: bool,
@@ -48,7 +48,7 @@ pub struct clap_gui_resize_hints {
 }
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_plugin_gui {
     pub is_api_supported: unsafe extern "C" fn(
         plugin: *const clap_plugin,
@@ -85,7 +85,7 @@ pub struct clap_plugin_gui {
 }
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_host_gui {
     pub resize_hints_changed: unsafe extern "C" fn(host: *const clap_host),
     pub request_resize:

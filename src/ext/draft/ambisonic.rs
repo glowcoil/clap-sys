@@ -16,14 +16,14 @@ pub const CLAP_AMBISONIC_NORMALIZATION_SN2D: u32 = 3;
 pub const CLAP_AMBISONIC_NORMALIZATION_N2D: u32 = 4;
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_ambisonic_info {
     pub ordering: u32,
     pub normalization: u32,
 }
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_plugin_ambisonic {
     pub get_info: unsafe extern "C" fn(
         plugin: *const clap_plugin,
@@ -34,7 +34,7 @@ pub struct clap_plugin_ambisonic {
 }
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_host_ambisonic {
     pub changed: unsafe extern "C" fn(host: *const clap_host),
 }
