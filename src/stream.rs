@@ -1,7 +1,7 @@
 use std::ffi::c_void;
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_istream {
     pub ctx: *mut c_void,
     pub read:
@@ -12,7 +12,7 @@ unsafe impl Send for clap_istream {}
 unsafe impl Sync for clap_istream {}
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_ostream {
     pub ctx: *mut c_void,
     pub write:

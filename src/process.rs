@@ -10,7 +10,7 @@ pub const CLAP_PROCESS_SLEEP: clap_process_status = 4;
 pub type clap_process_status = i32;
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_process {
     pub steady_time: i64,
     pub frames_count: u32,

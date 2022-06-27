@@ -4,7 +4,7 @@ use std::ffi::c_void;
 use std::os::raw::c_char;
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_plugin_entry {
     pub clap_version: clap_version,
     pub init: unsafe extern "C" fn(plugin_path: *const c_char) -> bool,

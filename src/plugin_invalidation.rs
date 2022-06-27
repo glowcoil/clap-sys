@@ -1,7 +1,7 @@
 use std::os::raw::c_char;
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_plugin_invalidation_source {
     pub directory: *const c_char,
     pub filename_glob: *const c_char,
@@ -15,7 +15,7 @@ pub const CLAP_PLUGIN_INVALIDATION_FACTORY_ID: *const c_char =
     b"clap.plugin-invalidation-factory/draft0\0".as_ptr() as *const c_char;
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_plugin_invalidation_factory {
     pub count: unsafe extern "C" fn(factory: *const clap_plugin_invalidation_factory) -> u32,
     pub get: unsafe extern "C" fn(

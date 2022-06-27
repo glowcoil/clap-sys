@@ -1,6 +1,7 @@
 use crate::{host::*, plugin::*};
 
 use std::ffi::c_void;
+use std::fmt::Debug;
 use std::os::raw::{c_char, c_ulong};
 
 pub const CLAP_EXT_GUI: *const c_char = b"clap.gui\0".as_ptr() as *const c_char;
@@ -15,7 +16,7 @@ pub type clap_nsview = *mut c_void;
 pub type clap_xwnd = c_ulong;
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_window {
     pub api: *const c_char,
     pub specific: clap_window_handle,
@@ -38,7 +39,7 @@ unsafe impl Send for clap_window_handle {}
 unsafe impl Sync for clap_window_handle {}
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_gui_resize_hints {
     pub can_resize_horizontally: bool,
     pub can_resize_vertically: bool,
@@ -48,7 +49,7 @@ pub struct clap_gui_resize_hints {
 }
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_plugin_gui {
     pub is_api_supported: unsafe extern "C" fn(
         plugin: *const clap_plugin,
@@ -85,7 +86,7 @@ pub struct clap_plugin_gui {
 }
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_host_gui {
     pub resize_hints_changed: unsafe extern "C" fn(host: *const clap_host),
     pub request_resize:
@@ -93,4 +94,12 @@ pub struct clap_host_gui {
     pub request_show: unsafe extern "C" fn(host: *const clap_host) -> bool,
     pub request_hide: unsafe extern "C" fn(host: *const clap_host) -> bool,
     pub closed: unsafe extern "C" fn(host: *const clap_host, was_destroyed: bool),
+}
+
+impl Debug for clap_window_handle {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        // We can't know which variant this actually is without supposed to be without checking the
+        // `api` field in `clap_window`, but that cannot be done safely
+        f.debug_struct("clap_window_handle").finish_non_exhaustive()
+    }
 }

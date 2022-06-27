@@ -4,7 +4,7 @@ use std::ffi::c_void;
 use std::os::raw::c_char;
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_plugin_descriptor {
     pub clap_version: clap_version,
     pub id: *const c_char,
@@ -22,7 +22,7 @@ unsafe impl Send for clap_plugin_descriptor {}
 unsafe impl Sync for clap_plugin_descriptor {}
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_plugin {
     pub desc: *const clap_plugin_descriptor,
     pub plugin_data: *mut c_void,

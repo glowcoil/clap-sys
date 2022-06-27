@@ -3,7 +3,7 @@ use crate::{fixedpoint::*, id::*};
 use std::ffi::c_void;
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_event_header {
     pub size: u32,
     pub time: u32,
@@ -36,7 +36,7 @@ pub const CLAP_EVENT_MIDI2: clap_event_type = 12;
 pub type clap_event_type = u16;
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_event_note {
     pub header: clap_event_header,
     pub note_id: i32,
@@ -57,7 +57,7 @@ pub const CLAP_NOTE_EXPRESSION_PRESSURE: clap_note_expression = 6;
 pub type clap_note_expression = i32;
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_event_note_expression {
     pub header: clap_event_header,
     pub expression_id: clap_note_expression,
@@ -69,7 +69,7 @@ pub struct clap_event_note_expression {
 }
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_event_param_value {
     pub header: clap_event_header,
     pub param_id: clap_id,
@@ -85,7 +85,7 @@ unsafe impl Send for clap_event_param_value {}
 unsafe impl Sync for clap_event_param_value {}
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_event_param_mod {
     pub header: clap_event_header,
     pub param_id: clap_id,
@@ -101,7 +101,7 @@ unsafe impl Send for clap_event_param_mod {}
 unsafe impl Sync for clap_event_param_mod {}
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_event_param_gesture {
     pub header: clap_event_header,
     pub param_id: clap_id,
@@ -119,7 +119,7 @@ pub const CLAP_TRANSPORT_IS_WITHIN_PRE_ROLL: clap_transport_flags = 1 << 7;
 pub type clap_transport_flags = u32;
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_event_transport {
     pub header: clap_event_header,
     pub flags: clap_transport_flags,
@@ -138,7 +138,7 @@ pub struct clap_event_transport {
 }
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_event_midi {
     pub header: clap_event_header,
     pub port_index: u16,
@@ -146,7 +146,7 @@ pub struct clap_event_midi {
 }
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_event_midi_sysex {
     pub header: clap_event_header,
     pub port_index: u16,
@@ -158,7 +158,7 @@ unsafe impl Send for clap_event_midi_sysex {}
 unsafe impl Sync for clap_event_midi_sysex {}
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_event_midi2 {
     pub header: clap_event_header,
     pub port_index: u16,
@@ -166,7 +166,7 @@ pub struct clap_event_midi2 {
 }
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_input_events {
     pub ctx: *mut c_void,
     pub size: unsafe extern "C" fn(list: *const clap_input_events) -> u32,
@@ -180,7 +180,7 @@ unsafe impl Send for clap_input_events {}
 unsafe impl Sync for clap_input_events {}
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_output_events {
     pub ctx: *mut c_void,
     pub try_push: unsafe extern "C" fn(

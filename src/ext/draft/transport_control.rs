@@ -6,7 +6,7 @@ pub const CLAP_EXT_TRANSPORT_CONTROL: *const c_char =
     b"clap.transport-control.draft/0\0".as_ptr() as *const c_char;
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct clap_host_transport_control {
     pub request_start: unsafe extern "C" fn(host: *const clap_host),
     pub request_stop: unsafe extern "C" fn(host: *const clap_host),
