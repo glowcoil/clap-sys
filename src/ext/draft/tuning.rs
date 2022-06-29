@@ -1,8 +1,10 @@
 use crate::{events::*, host::*, id::*, plugin::*, string_sizes::*};
 
+use std::ffi::CStr;
 use std::os::raw::c_char;
 
-pub const CLAP_EXT_TUNING: *const c_char = b"clap.tuning.draft/2\0".as_ptr() as *const c_char;
+pub const CLAP_EXT_TUNING: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.tuning.draft/2\0") };
 
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]

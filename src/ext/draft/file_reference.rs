@@ -1,9 +1,10 @@
 use crate::{host::*, id::*, plugin::*};
 
+use std::ffi::CStr;
 use std::os::raw::c_char;
 
-pub const CLAP_EXT_FILE_REFERENCE: *const c_char =
-    b"clap.file-reference.draft/0\0".as_ptr() as *const c_char;
+pub const CLAP_EXT_FILE_REFERENCE: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.file-reference.draft/0\0") };
 
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]

@@ -1,8 +1,8 @@
 use crate::plugin::*;
 
-use std::os::raw::c_char;
+use std::ffi::CStr;
 
-pub const CLAP_EXT_RENDER: *const c_char = b"clap.render\0".as_ptr() as *const c_char;
+pub const CLAP_EXT_RENDER: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.render\0") };
 
 pub const CLAP_RENDER_REALTIME: clap_plugin_render_mode = 0;
 pub const CLAP_RENDER_OFFLINE: clap_plugin_render_mode = 1;

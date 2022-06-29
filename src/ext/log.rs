@@ -1,8 +1,9 @@
 use crate::host::*;
 
+use std::ffi::CStr;
 use std::os::raw::c_char;
 
-pub const CLAP_EXT_LOG: *const c_char = b"clap.log\0".as_ptr() as *const c_char;
+pub const CLAP_EXT_LOG: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.log\0") };
 
 pub const CLAP_LOG_DEBUG: clap_log_severity = 0;
 pub const CLAP_LOG_INFO: clap_log_severity = 1;

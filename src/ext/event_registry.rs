@@ -1,9 +1,10 @@
 use crate::host::*;
 
+use std::ffi::CStr;
 use std::os::raw::c_char;
 
-pub const CLAP_EXT_EVENT_REGISTRY: *const c_char =
-    b"clap.event-registry\0".as_ptr() as *const c_char;
+pub const CLAP_EXT_EVENT_REGISTRY: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.event-registry\0") };
 
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]

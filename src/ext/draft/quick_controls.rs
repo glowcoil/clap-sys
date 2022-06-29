@@ -1,9 +1,10 @@
 use crate::{host::*, id::*, plugin::*, string_sizes::*};
 
+use std::ffi::CStr;
 use std::os::raw::c_char;
 
-pub const CLAP_EXT_QUICK_CONTROLS: *const c_char =
-    b"clap.quick-controls.draft/0\0".as_ptr() as *const c_char;
+pub const CLAP_EXT_QUICK_CONTROLS: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.quick-controls.draft/0\0") };
 
 pub const CLAP_QUICK_CONTROLS_COUNT: usize = 8;
 
