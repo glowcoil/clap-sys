@@ -1,10 +1,10 @@
 use crate::{host::*, plugin::*};
 
-use std::os::raw::c_char;
+use std::ffi::CStr;
 
-pub const CLAP_EXT_CV: *const c_char = b"clap.cv.draft/0\0".as_ptr() as *const c_char;
+pub const CLAP_EXT_CV: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.cv.draft/0\0") };
 
-pub const CLAP_PORT_CV: *const c_char = b"cv\0".as_ptr() as *const c_char;
+pub const CLAP_PORT_CV: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"cv\0") };
 
 pub const CLAP_CV_VALUE: u32 = 0;
 pub const CLAP_CV_GATE: u32 = 1;

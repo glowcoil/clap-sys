@@ -1,8 +1,10 @@
 use crate::{host::*, plugin::*, string_sizes::*};
 
+use std::ffi::CStr;
 use std::os::raw::c_char;
 
-pub const CLAP_EXT_NOTE_NAME: *const c_char = b"clap.note-name\0".as_ptr() as *const c_char;
+pub const CLAP_EXT_NOTE_NAME: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.note-name\0") };
 
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]

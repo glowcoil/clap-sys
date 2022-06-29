@@ -1,9 +1,10 @@
 use crate::plugin::*;
 
+use std::ffi::CStr;
 use std::os::raw::c_char;
 
-pub const CLAP_EXT_PRESET_LOAD: *const c_char =
-    b"clap.preset-load.draft/0\0".as_ptr() as *const c_char;
+pub const CLAP_EXT_PRESET_LOAD: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.preset-load.draft/0\0") };
 
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]

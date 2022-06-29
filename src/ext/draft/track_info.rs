@@ -1,9 +1,10 @@
 use crate::{color::*, host::*, id::*, plugin::*, string_sizes::*};
 
+use std::ffi::CStr;
 use std::os::raw::c_char;
 
-pub const CLAP_EXT_TRACK_INFO: *const c_char =
-    b"clap.track-info.draft/0\0".as_ptr() as *const c_char;
+pub const CLAP_EXT_TRACK_INFO: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.track-info.draft/0\0") };
 
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]

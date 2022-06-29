@@ -1,9 +1,9 @@
 use crate::{fixedpoint::*, host::*};
 
-use std::os::raw::c_char;
+use std::ffi::CStr;
 
-pub const CLAP_EXT_TRANSPORT_CONTROL: *const c_char =
-    b"clap.transport-control.draft/0\0".as_ptr() as *const c_char;
+pub const CLAP_EXT_TRANSPORT_CONTROL: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.transport-control.draft/0\0") };
 
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]

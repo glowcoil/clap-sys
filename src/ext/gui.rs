@@ -1,15 +1,16 @@
 use crate::{host::*, plugin::*};
 
-use std::ffi::c_void;
+use std::ffi::{c_void, CStr};
 use std::fmt::Debug;
 use std::os::raw::{c_char, c_ulong};
 
-pub const CLAP_EXT_GUI: *const c_char = b"clap.gui\0".as_ptr() as *const c_char;
+pub const CLAP_EXT_GUI: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.gui\0") };
 
-pub const CLAP_WINDOW_API_WIN32: *const c_char = b"win32\0".as_ptr() as *const c_char;
-pub const CLAP_WINDOW_API_COCOA: *const c_char = b"cocoa\0".as_ptr() as *const c_char;
-pub const CLAP_WINDOW_API_X11: *const c_char = b"x11\0".as_ptr() as *const c_char;
-pub const CLAP_WINDOW_API_WAYLAND: *const c_char = b"wayland\0".as_ptr() as *const c_char;
+pub const CLAP_WINDOW_API_WIN32: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"win32\0") };
+pub const CLAP_WINDOW_API_COCOA: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"cocoa\0") };
+pub const CLAP_WINDOW_API_X11: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"x11\0") };
+pub const CLAP_WINDOW_API_WAYLAND: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"wayland\0") };
 
 pub type clap_hwnd = *mut c_void;
 pub type clap_nsview = *mut c_void;
