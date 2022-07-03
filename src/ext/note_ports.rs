@@ -25,13 +25,15 @@ pub struct clap_note_port_info {
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_plugin_note_ports {
-    pub count: unsafe extern "C" fn(plugin: *const clap_plugin, is_input: bool) -> u32,
-    pub get: unsafe extern "C" fn(
-        plugin: *const clap_plugin,
-        index: u32,
-        is_input: bool,
-        info: *mut clap_note_port_info,
-    ) -> bool,
+    pub count: Option<unsafe extern "C" fn(plugin: *const clap_plugin, is_input: bool) -> u32>,
+    pub get: Option<
+        unsafe extern "C" fn(
+            plugin: *const clap_plugin,
+            index: u32,
+            is_input: bool,
+            info: *mut clap_note_port_info,
+        ) -> bool,
+    >,
 }
 
 pub const CLAP_NOTE_PORTS_RESCAN_ALL: u32 = 1 << 0;
@@ -40,6 +42,7 @@ pub const CLAP_NOTE_PORTS_RESCAN_NAMES: u32 = 1 << 1;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_host_note_ports {
-    pub supported_dialects: unsafe extern "C" fn(host: *const clap_host) -> clap_note_dialect,
-    pub rescan: unsafe extern "C" fn(host: *const clap_host, flags: u32),
+    pub supported_dialects:
+        Option<unsafe extern "C" fn(host: *const clap_host) -> clap_note_dialect>,
+    pub rescan: Option<unsafe extern "C" fn(host: *const clap_host, flags: u32)>,
 }

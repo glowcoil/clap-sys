@@ -8,11 +8,11 @@ pub const CLAP_EXT_THREAD_POOL: &CStr =
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_plugin_thread_pool {
-    pub exec: unsafe extern "C" fn(plugin: *const clap_plugin, task_index: u32),
+    pub exec: Option<unsafe extern "C" fn(plugin: *const clap_plugin, task_index: u32)>,
 }
 
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_host_thread_pool {
-    pub request_exec: unsafe extern "C" fn(host: *const clap_host, num_tasks: u32) -> bool,
+    pub request_exec: Option<unsafe extern "C" fn(host: *const clap_host, num_tasks: u32) -> bool>,
 }

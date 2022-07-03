@@ -8,6 +8,6 @@ pub const CLAP_EXT_THREAD_CHECK: &CStr =
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_host_thread_check {
-    pub is_main_thread: unsafe extern "C" fn(host: *const clap_host) -> bool,
-    pub is_audio_thread: unsafe extern "C" fn(host: *const clap_host) -> bool,
+    pub is_main_thread: Option<unsafe extern "C" fn(host: *const clap_host) -> bool>,
+    pub is_audio_thread: Option<unsafe extern "C" fn(host: *const clap_host) -> bool>,
 }

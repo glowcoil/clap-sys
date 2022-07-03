@@ -22,33 +22,41 @@ unsafe impl Sync for clap_file_reference {}
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_plugin_file_reference {
-    pub count: unsafe extern "C" fn(plugin: *const clap_plugin) -> u32,
-    pub get: unsafe extern "C" fn(
-        plugin: *const clap_plugin,
-        index: u32,
-        file_reference: *mut clap_file_reference,
-    ) -> bool,
-    pub get_blake3_digest: unsafe extern "C" fn(
-        plugin: *const clap_plugin,
-        resource_id: clap_id,
-        digest: *mut u8,
-    ) -> bool,
-    pub get_file_size: unsafe extern "C" fn(
-        plugin: *const clap_plugin,
-        resource_id: clap_id,
-        size: *mut u64,
-    ) -> bool,
-    pub update_path: unsafe extern "C" fn(
-        plugin: *const clap_plugin,
-        resource_id: clap_id,
-        path: *const c_char,
-    ) -> bool,
-    pub save_resources: unsafe extern "C" fn(plugin: *const clap_plugin) -> bool,
+    pub count: Option<unsafe extern "C" fn(plugin: *const clap_plugin) -> u32>,
+    pub get: Option<
+        unsafe extern "C" fn(
+            plugin: *const clap_plugin,
+            index: u32,
+            file_reference: *mut clap_file_reference,
+        ) -> bool,
+    >,
+    pub get_blake3_digest: Option<
+        unsafe extern "C" fn(
+            plugin: *const clap_plugin,
+            resource_id: clap_id,
+            digest: *mut u8,
+        ) -> bool,
+    >,
+    pub get_file_size: Option<
+        unsafe extern "C" fn(
+            plugin: *const clap_plugin,
+            resource_id: clap_id,
+            size: *mut u64,
+        ) -> bool,
+    >,
+    pub update_path: Option<
+        unsafe extern "C" fn(
+            plugin: *const clap_plugin,
+            resource_id: clap_id,
+            path: *const c_char,
+        ) -> bool,
+    >,
+    pub save_resources: Option<unsafe extern "C" fn(plugin: *const clap_plugin) -> bool>,
 }
 
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_host_file_reference {
-    pub changed: unsafe extern "C" fn(host: *const clap_host),
-    pub set_dirty: unsafe extern "C" fn(host: *const clap_host, resource_id: clap_id),
+    pub changed: Option<unsafe extern "C" fn(host: *const clap_host)>,
+    pub set_dirty: Option<unsafe extern "C" fn(host: *const clap_host, resource_id: clap_id)>,
 }

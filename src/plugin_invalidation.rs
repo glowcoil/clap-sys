@@ -18,10 +18,14 @@ pub const CLAP_PLUGIN_INVALIDATION_FACTORY_ID: &CStr =
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_plugin_invalidation_factory {
-    pub count: unsafe extern "C" fn(factory: *const clap_plugin_invalidation_factory) -> u32,
-    pub get: unsafe extern "C" fn(
-        factory: *const clap_plugin_invalidation_factory,
-        index: u32,
-    ) -> *const clap_plugin_invalidation_source,
-    pub refresh: unsafe extern "C" fn(factory: *const clap_plugin_invalidation_factory) -> bool,
+    pub count:
+        Option<unsafe extern "C" fn(factory: *const clap_plugin_invalidation_factory) -> u32>,
+    pub get: Option<
+        unsafe extern "C" fn(
+            factory: *const clap_plugin_invalidation_factory,
+            index: u32,
+        ) -> *const clap_plugin_invalidation_source,
+    >,
+    pub refresh:
+        Option<unsafe extern "C" fn(factory: *const clap_plugin_invalidation_factory) -> bool>,
 }

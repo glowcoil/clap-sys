@@ -13,17 +13,19 @@ pub const CLAP_CV_PITCH: u32 = 2;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_plugin_cv {
-    pub get_channel_type: unsafe extern "C" fn(
-        plugin: *const clap_plugin,
-        is_input: bool,
-        port_index: u32,
-        channel_index: u32,
-        channel_type: *mut u32,
-    ) -> bool,
+    pub get_channel_type: Option<
+        unsafe extern "C" fn(
+            plugin: *const clap_plugin,
+            is_input: bool,
+            port_index: u32,
+            channel_index: u32,
+            channel_type: *mut u32,
+        ) -> bool,
+    >,
 }
 
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_host_cv {
-    pub changed: unsafe extern "C" fn(host: *const clap_host),
+    pub changed: Option<unsafe extern "C" fn(host: *const clap_host)>,
 }

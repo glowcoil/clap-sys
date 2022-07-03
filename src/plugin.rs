@@ -26,25 +26,30 @@ unsafe impl Sync for clap_plugin_descriptor {}
 pub struct clap_plugin {
     pub desc: *const clap_plugin_descriptor,
     pub plugin_data: *mut c_void,
-    pub init: unsafe extern "C" fn(plugin: *const clap_plugin) -> bool,
-    pub destroy: unsafe extern "C" fn(plugin: *const clap_plugin),
-    pub activate: unsafe extern "C" fn(
-        plugin: *const clap_plugin,
-        sample_rate: f64,
-        min_frames_count: u32,
-        max_frames_count: u32,
-    ) -> bool,
-    pub deactivate: unsafe extern "C" fn(plugin: *const clap_plugin),
-    pub start_processing: unsafe extern "C" fn(plugin: *const clap_plugin) -> bool,
-    pub stop_processing: unsafe extern "C" fn(plugin: *const clap_plugin),
-    pub reset: unsafe extern "C" fn(plugin: *const clap_plugin),
-    pub process: unsafe extern "C" fn(
-        plugin: *const clap_plugin,
-        process: *const clap_process,
-    ) -> clap_process_status,
-    pub get_extension:
+    pub init: Option<unsafe extern "C" fn(plugin: *const clap_plugin) -> bool>,
+    pub destroy: Option<unsafe extern "C" fn(plugin: *const clap_plugin)>,
+    pub activate: Option<
+        unsafe extern "C" fn(
+            plugin: *const clap_plugin,
+            sample_rate: f64,
+            min_frames_count: u32,
+            max_frames_count: u32,
+        ) -> bool,
+    >,
+    pub deactivate: Option<unsafe extern "C" fn(plugin: *const clap_plugin)>,
+    pub start_processing: Option<unsafe extern "C" fn(plugin: *const clap_plugin) -> bool>,
+    pub stop_processing: Option<unsafe extern "C" fn(plugin: *const clap_plugin)>,
+    pub reset: Option<unsafe extern "C" fn(plugin: *const clap_plugin)>,
+    pub process: Option<
+        unsafe extern "C" fn(
+            plugin: *const clap_plugin,
+            process: *const clap_process,
+        ) -> clap_process_status,
+    >,
+    pub get_extension: Option<
         unsafe extern "C" fn(plugin: *const clap_plugin, id: *const c_char) -> *const c_void,
-    pub on_main_thread: unsafe extern "C" fn(plugin: *const clap_plugin),
+    >,
+    pub on_main_thread: Option<unsafe extern "C" fn(plugin: *const clap_plugin)>,
 }
 
 unsafe impl Send for clap_plugin {}

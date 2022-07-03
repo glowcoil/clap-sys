@@ -12,11 +12,12 @@ pub struct clap_host {
     pub vendor: *const c_char,
     pub url: *const c_char,
     pub version: *const c_char,
-    pub get_extension:
+    pub get_extension: Option<
         unsafe extern "C" fn(host: *const clap_host, extension_id: *const c_char) -> *const c_void,
-    pub request_restart: unsafe extern "C" fn(host: *const clap_host),
-    pub request_process: unsafe extern "C" fn(host: *const clap_host),
-    pub request_callback: unsafe extern "C" fn(host: *const clap_host),
+    >,
+    pub request_restart: Option<unsafe extern "C" fn(host: *const clap_host)>,
+    pub request_process: Option<unsafe extern "C" fn(host: *const clap_host)>,
+    pub request_callback: Option<unsafe extern "C" fn(host: *const clap_host)>,
 }
 
 unsafe impl Send for clap_host {}

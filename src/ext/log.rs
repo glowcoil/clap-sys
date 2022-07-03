@@ -18,9 +18,11 @@ pub type clap_log_severity = i32;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_host_log {
-    pub log: unsafe extern "C" fn(
-        host: *const clap_host,
-        severity: clap_log_severity,
-        msg: *const c_char,
-    ),
+    pub log: Option<
+        unsafe extern "C" fn(
+            host: *const clap_host,
+            severity: clap_log_severity,
+            msg: *const c_char,
+        ),
+    >,
 }

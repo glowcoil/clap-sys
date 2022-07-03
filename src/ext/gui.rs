@@ -52,49 +52,62 @@ pub struct clap_gui_resize_hints {
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_plugin_gui {
-    pub is_api_supported: unsafe extern "C" fn(
-        plugin: *const clap_plugin,
-        api: *const c_char,
-        is_floating: bool,
-    ) -> bool,
-    pub get_preferred_api: unsafe extern "C" fn(
-        plugin: *const clap_plugin,
-        api: *mut *const c_char,
-        is_floating: *mut bool,
-    ) -> bool,
-    pub create: unsafe extern "C" fn(
-        plugin: *const clap_plugin,
-        api: *const c_char,
-        is_floating: bool,
-    ) -> bool,
-    pub destroy: unsafe extern "C" fn(plugin: *const clap_plugin),
-    pub set_scale: unsafe extern "C" fn(plugin: *const clap_plugin, scale: f64) -> bool,
-    pub get_size:
+    pub is_api_supported: Option<
+        unsafe extern "C" fn(
+            plugin: *const clap_plugin,
+            api: *const c_char,
+            is_floating: bool,
+        ) -> bool,
+    >,
+    pub get_preferred_api: Option<
+        unsafe extern "C" fn(
+            plugin: *const clap_plugin,
+            api: *mut *const c_char,
+            is_floating: *mut bool,
+        ) -> bool,
+    >,
+    pub create: Option<
+        unsafe extern "C" fn(
+            plugin: *const clap_plugin,
+            api: *const c_char,
+            is_floating: bool,
+        ) -> bool,
+    >,
+    pub destroy: Option<unsafe extern "C" fn(plugin: *const clap_plugin)>,
+    pub set_scale: Option<unsafe extern "C" fn(plugin: *const clap_plugin, scale: f64) -> bool>,
+    pub get_size: Option<
         unsafe extern "C" fn(plugin: *const clap_plugin, width: *mut u32, height: *mut u32) -> bool,
-    pub can_resize: unsafe extern "C" fn(plugin: *const clap_plugin) -> bool,
-    pub get_resize_hints:
+    >,
+    pub can_resize: Option<unsafe extern "C" fn(plugin: *const clap_plugin) -> bool>,
+    pub get_resize_hints: Option<
         unsafe extern "C" fn(plugin: *const clap_plugin, hints: *mut clap_gui_resize_hints) -> bool,
-    pub adjust_size:
+    >,
+    pub adjust_size: Option<
         unsafe extern "C" fn(plugin: *const clap_plugin, width: *mut u32, height: *mut u32) -> bool,
-    pub set_size: unsafe extern "C" fn(plugin: *const clap_plugin, width: u32, height: u32) -> bool,
-    pub set_parent:
+    >,
+    pub set_size:
+        Option<unsafe extern "C" fn(plugin: *const clap_plugin, width: u32, height: u32) -> bool>,
+    pub set_parent: Option<
         unsafe extern "C" fn(plugin: *const clap_plugin, window: *const clap_window) -> bool,
-    pub set_transient:
+    >,
+    pub set_transient: Option<
         unsafe extern "C" fn(plugin: *const clap_plugin, window: *const clap_window) -> bool,
-    pub suggest_title: unsafe extern "C" fn(plugin: *const clap_plugin, title: *const c_char),
-    pub show: unsafe extern "C" fn(plugin: *const clap_plugin) -> bool,
-    pub hide: unsafe extern "C" fn(plugin: *const clap_plugin) -> bool,
+    >,
+    pub suggest_title:
+        Option<unsafe extern "C" fn(plugin: *const clap_plugin, title: *const c_char)>,
+    pub show: Option<unsafe extern "C" fn(plugin: *const clap_plugin) -> bool>,
+    pub hide: Option<unsafe extern "C" fn(plugin: *const clap_plugin) -> bool>,
 }
 
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_host_gui {
-    pub resize_hints_changed: unsafe extern "C" fn(host: *const clap_host),
+    pub resize_hints_changed: Option<unsafe extern "C" fn(host: *const clap_host)>,
     pub request_resize:
-        unsafe extern "C" fn(host: *const clap_host, width: u32, height: u32) -> bool,
-    pub request_show: unsafe extern "C" fn(host: *const clap_host) -> bool,
-    pub request_hide: unsafe extern "C" fn(host: *const clap_host) -> bool,
-    pub closed: unsafe extern "C" fn(host: *const clap_host, was_destroyed: bool),
+        Option<unsafe extern "C" fn(host: *const clap_host, width: u32, height: u32) -> bool>,
+    pub request_show: Option<unsafe extern "C" fn(host: *const clap_host) -> bool>,
+    pub request_hide: Option<unsafe extern "C" fn(host: *const clap_host) -> bool>,
+    pub closed: Option<unsafe extern "C" fn(host: *const clap_host, was_destroyed: bool)>,
 }
 
 impl Debug for clap_window_handle {
