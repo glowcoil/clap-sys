@@ -18,11 +18,13 @@ pub struct clap_voice_info {
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_plugin_voice_info {
-    pub get: unsafe extern "C" fn(plugin: *const clap_plugin, info: *mut clap_voice_info) -> bool,
+    pub get: Option<
+        unsafe extern "C" fn(plugin: *const clap_plugin, info: *mut clap_voice_info) -> bool,
+    >,
 }
 
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_host_voice_info {
-    pub changed: unsafe extern "C" fn(host: *const clap_host),
+    pub changed: Option<unsafe extern "C" fn(host: *const clap_host)>,
 }

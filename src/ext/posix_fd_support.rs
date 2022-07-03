@@ -14,16 +14,19 @@ pub type clap_posix_fd_flags = u32;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_plugin_posix_fd_support {
-    pub on_fd:
+    pub on_fd: Option<
         unsafe extern "C" fn(plugin: *const clap_plugin, fd: i32, flags: clap_posix_fd_flags),
+    >,
 }
 
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_host_posix_fd_support {
-    pub register_fd:
+    pub register_fd: Option<
         unsafe extern "C" fn(host: *const clap_host, fd: i32, flags: clap_posix_fd_flags) -> bool,
-    pub modify_fd:
+    >,
+    pub modify_fd: Option<
         unsafe extern "C" fn(host: *const clap_host, fd: i32, flags: clap_posix_fd_flags) -> bool,
-    pub unregister_fd: unsafe extern "C" fn(host: *const clap_host, fd: i32) -> bool,
+    >,
+    pub unregister_fd: Option<unsafe extern "C" fn(host: *const clap_host, fd: i32) -> bool>,
 }

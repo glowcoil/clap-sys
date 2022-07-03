@@ -25,11 +25,12 @@ unsafe impl Sync for clap_track_info {}
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_plugin_track_info {
-    pub changed: unsafe extern "C" fn(plugin: *const clap_plugin),
+    pub changed: Option<unsafe extern "C" fn(plugin: *const clap_plugin)>,
 }
 
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_host_track_info {
-    pub get: unsafe extern "C" fn(host: *const clap_host, info: *mut clap_track_info) -> bool,
+    pub get:
+        Option<unsafe extern "C" fn(host: *const clap_host, info: *mut clap_track_info) -> bool>,
 }

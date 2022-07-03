@@ -44,35 +44,45 @@ unsafe impl Sync for clap_param_info {}
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_plugin_params {
-    pub count: unsafe extern "C" fn(plugin: *const clap_plugin) -> u32,
-    pub get_info: unsafe extern "C" fn(
-        plugin: *const clap_plugin,
-        param_index: u32,
-        param_info: *mut clap_param_info,
-    ) -> bool,
-    pub get_value: unsafe extern "C" fn(
-        plugin: *const clap_plugin,
-        param_id: clap_id,
-        value: *mut f64,
-    ) -> bool,
-    pub value_to_text: unsafe extern "C" fn(
-        plugin: *const clap_plugin,
-        param_id: clap_id,
-        value: f64,
-        display: *mut c_char,
-        size: u32,
-    ) -> bool,
-    pub text_to_value: unsafe extern "C" fn(
-        plugin: *const clap_plugin,
-        param_id: clap_id,
-        display: *const c_char,
-        value: *mut f64,
-    ) -> bool,
-    pub flush: unsafe extern "C" fn(
-        plugin: *const clap_plugin,
-        in_: *const clap_input_events,
-        out: *const clap_output_events,
-    ),
+    pub count: Option<unsafe extern "C" fn(plugin: *const clap_plugin) -> u32>,
+    pub get_info: Option<
+        unsafe extern "C" fn(
+            plugin: *const clap_plugin,
+            param_index: u32,
+            param_info: *mut clap_param_info,
+        ) -> bool,
+    >,
+    pub get_value: Option<
+        unsafe extern "C" fn(
+            plugin: *const clap_plugin,
+            param_id: clap_id,
+            value: *mut f64,
+        ) -> bool,
+    >,
+    pub value_to_text: Option<
+        unsafe extern "C" fn(
+            plugin: *const clap_plugin,
+            param_id: clap_id,
+            value: f64,
+            display: *mut c_char,
+            size: u32,
+        ) -> bool,
+    >,
+    pub text_to_value: Option<
+        unsafe extern "C" fn(
+            plugin: *const clap_plugin,
+            param_id: clap_id,
+            display: *const c_char,
+            value: *mut f64,
+        ) -> bool,
+    >,
+    pub flush: Option<
+        unsafe extern "C" fn(
+            plugin: *const clap_plugin,
+            in_: *const clap_input_events,
+            out: *const clap_output_events,
+        ),
+    >,
 }
 
 pub const CLAP_PARAM_RESCAN_VALUES: clap_param_rescan_flags = 1 << 0;
@@ -91,11 +101,14 @@ pub type clap_param_clear_flags = u32;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_host_params {
-    pub rescan: unsafe extern "C" fn(host: *const clap_host, flags: clap_param_rescan_flags),
-    pub clear: unsafe extern "C" fn(
-        host: *const clap_host,
-        param_id: clap_id,
-        flags: clap_param_clear_flags,
-    ),
-    pub request_flush: unsafe extern "C" fn(host: *const clap_host),
+    pub rescan:
+        Option<unsafe extern "C" fn(host: *const clap_host, flags: clap_param_rescan_flags)>,
+    pub clear: Option<
+        unsafe extern "C" fn(
+            host: *const clap_host,
+            param_id: clap_id,
+            flags: clap_param_clear_flags,
+        ),
+    >,
+    pub request_flush: Option<unsafe extern "C" fn(host: *const clap_host)>,
 }

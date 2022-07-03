@@ -8,11 +8,11 @@ pub const CLAP_EXT_LATENCY: &CStr =
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_plugin_latency {
-    pub get: unsafe extern "C" fn(plugin: *const clap_plugin) -> u32,
+    pub get: Option<unsafe extern "C" fn(plugin: *const clap_plugin) -> u32>,
 }
 
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_host_latency {
-    pub changed: unsafe extern "C" fn(host: *const clap_host),
+    pub changed: Option<unsafe extern "C" fn(host: *const clap_host)>,
 }

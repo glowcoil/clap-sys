@@ -30,17 +30,20 @@ unsafe impl Sync for clap_audio_ports_config {}
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_plugin_audio_ports_config {
-    pub count: unsafe extern "C" fn(plugin: *const clap_plugin) -> u32,
-    pub get: unsafe extern "C" fn(
-        plugin: *const clap_plugin,
-        index: u32,
-        config: *mut clap_audio_ports_config,
-    ) -> bool,
-    pub select: unsafe extern "C" fn(plugin: *const clap_plugin, config_id: clap_id) -> bool,
+    pub count: Option<unsafe extern "C" fn(plugin: *const clap_plugin) -> u32>,
+    pub get: Option<
+        unsafe extern "C" fn(
+            plugin: *const clap_plugin,
+            index: u32,
+            config: *mut clap_audio_ports_config,
+        ) -> bool,
+    >,
+    pub select:
+        Option<unsafe extern "C" fn(plugin: *const clap_plugin, config_id: clap_id) -> bool>,
 }
 
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_host_audio_ports_config {
-    pub rescan: unsafe extern "C" fn(host: *const clap_host),
+    pub rescan: Option<unsafe extern "C" fn(host: *const clap_host)>,
 }

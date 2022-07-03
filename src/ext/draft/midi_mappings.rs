@@ -25,16 +25,18 @@ pub struct clap_midi_mapping {
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_plugin_midi_mappings {
-    pub count: unsafe extern "C" fn(plugin: *const clap_plugin) -> u32,
-    pub get: unsafe extern "C" fn(
-        plugin: *const clap_plugin,
-        index: u32,
-        mapping: *mut clap_midi_mapping,
-    ) -> bool,
+    pub count: Option<unsafe extern "C" fn(plugin: *const clap_plugin) -> u32>,
+    pub get: Option<
+        unsafe extern "C" fn(
+            plugin: *const clap_plugin,
+            index: u32,
+            mapping: *mut clap_midi_mapping,
+        ) -> bool,
+    >,
 }
 
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_host_midi_mappings {
-    pub changed: unsafe extern "C" fn(host: *const clap_host),
+    pub changed: Option<unsafe extern "C" fn(host: *const clap_host)>,
 }

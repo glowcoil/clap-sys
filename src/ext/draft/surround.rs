@@ -29,24 +29,28 @@ pub const CLAP_SURROUND_TBR: u32 = 17;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_plugin_surround {
-    pub get_channel_map: unsafe extern "C" fn(
-        plugin: *const clap_plugin,
-        is_input: bool,
-        port_index: u32,
-        channel_map: *mut u8,
-        channel_map_capacity: u32,
-    ) -> u32,
-    pub changed: unsafe extern "C" fn(plugin: *const clap_plugin),
+    pub get_channel_map: Option<
+        unsafe extern "C" fn(
+            plugin: *const clap_plugin,
+            is_input: bool,
+            port_index: u32,
+            channel_map: *mut u8,
+            channel_map_capacity: u32,
+        ) -> u32,
+    >,
+    pub changed: Option<unsafe extern "C" fn(plugin: *const clap_plugin)>,
 }
 
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_host_surround {
-    pub changed: unsafe extern "C" fn(host: *const clap_host),
-    pub get_preferred_channel_map: unsafe extern "C" fn(
-        plugin: *const clap_host,
-        channel_map: *mut u8,
-        channel_map_capacity: u32,
-        channel_count: *mut u32,
-    ),
+    pub changed: Option<unsafe extern "C" fn(host: *const clap_host)>,
+    pub get_preferred_channel_map: Option<
+        unsafe extern "C" fn(
+            plugin: *const clap_host,
+            channel_map: *mut u8,
+            channel_map_capacity: u32,
+            channel_count: *mut u32,
+        ),
+    >,
 }

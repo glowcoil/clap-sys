@@ -21,14 +21,16 @@ unsafe impl Sync for clap_check_for_update_info {}
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_plugin_check_for_update {
-    pub check: unsafe extern "C" fn(plugin: *const clap_plugin, include_preview: bool),
+    pub check: Option<unsafe extern "C" fn(plugin: *const clap_plugin, include_preview: bool)>,
 }
 
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_host_check_for_update {
-    pub on_new_version: unsafe extern "C" fn(
-        host: *const clap_host,
-        update_info: *const clap_check_for_update_info,
-    ),
+    pub on_new_version: Option<
+        unsafe extern "C" fn(
+            host: *const clap_host,
+            update_info: *const clap_check_for_update_info,
+        ),
+    >,
 }

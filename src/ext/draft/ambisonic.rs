@@ -27,16 +27,18 @@ pub struct clap_ambisonic_info {
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_plugin_ambisonic {
-    pub get_info: unsafe extern "C" fn(
-        plugin: *const clap_plugin,
-        is_input: bool,
-        port_index: u32,
-        info: *mut clap_ambisonic_info,
-    ) -> bool,
+    pub get_info: Option<
+        unsafe extern "C" fn(
+            plugin: *const clap_plugin,
+            is_input: bool,
+            port_index: u32,
+            info: *mut clap_ambisonic_info,
+        ) -> bool,
+    >,
 }
 
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_host_ambisonic {
-    pub changed: unsafe extern "C" fn(host: *const clap_host),
+    pub changed: Option<unsafe extern "C" fn(host: *const clap_host)>,
 }

@@ -8,16 +8,17 @@ pub const CLAP_EXT_TRANSPORT_CONTROL: &CStr =
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_host_transport_control {
-    pub request_start: unsafe extern "C" fn(host: *const clap_host),
-    pub request_stop: unsafe extern "C" fn(host: *const clap_host),
-    pub request_continue: unsafe extern "C" fn(host: *const clap_host),
-    pub request_pause: unsafe extern "C" fn(host: *const clap_host),
-    pub request_toggle_play: unsafe extern "C" fn(host: *const clap_host),
-    pub request_jump: unsafe extern "C" fn(host: *const clap_host, position: clap_beattime),
-    pub request_loop_region:
+    pub request_start: Option<unsafe extern "C" fn(host: *const clap_host)>,
+    pub request_stop: Option<unsafe extern "C" fn(host: *const clap_host)>,
+    pub request_continue: Option<unsafe extern "C" fn(host: *const clap_host)>,
+    pub request_pause: Option<unsafe extern "C" fn(host: *const clap_host)>,
+    pub request_toggle_play: Option<unsafe extern "C" fn(host: *const clap_host)>,
+    pub request_jump: Option<unsafe extern "C" fn(host: *const clap_host, position: clap_beattime)>,
+    pub request_loop_region: Option<
         unsafe extern "C" fn(host: *const clap_host, start: clap_beattime, duration: clap_beattime),
-    pub request_toggle_loop: unsafe extern "C" fn(host: *const clap_host),
-    pub request_enable_loop: unsafe extern "C" fn(host: *const clap_host, is_enabled: bool),
-    pub request_record: unsafe extern "C" fn(host: *const clap_host, is_recording: bool),
-    pub request_toggle_record: unsafe extern "C" fn(host: *const clap_host),
+    >,
+    pub request_toggle_loop: Option<unsafe extern "C" fn(host: *const clap_host)>,
+    pub request_enable_loop: Option<unsafe extern "C" fn(host: *const clap_host, is_enabled: bool)>,
+    pub request_record: Option<unsafe extern "C" fn(host: *const clap_host, is_recording: bool)>,
+    pub request_toggle_record: Option<unsafe extern "C" fn(host: *const clap_host)>,
 }

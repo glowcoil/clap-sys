@@ -169,11 +169,13 @@ pub struct clap_event_midi2 {
 #[derive(Debug, Copy, Clone)]
 pub struct clap_input_events {
     pub ctx: *mut c_void,
-    pub size: unsafe extern "C" fn(list: *const clap_input_events) -> u32,
-    pub get: unsafe extern "C" fn(
-        list: *const clap_input_events,
-        index: u32,
-    ) -> *const clap_event_header,
+    pub size: Option<unsafe extern "C" fn(list: *const clap_input_events) -> u32>,
+    pub get: Option<
+        unsafe extern "C" fn(
+            list: *const clap_input_events,
+            index: u32,
+        ) -> *const clap_event_header,
+    >,
 }
 
 unsafe impl Send for clap_input_events {}
@@ -183,10 +185,12 @@ unsafe impl Sync for clap_input_events {}
 #[derive(Debug, Copy, Clone)]
 pub struct clap_output_events {
     pub ctx: *mut c_void,
-    pub try_push: unsafe extern "C" fn(
-        list: *const clap_output_events,
-        event: *const clap_event_header,
-    ) -> bool,
+    pub try_push: Option<
+        unsafe extern "C" fn(
+            list: *const clap_output_events,
+            event: *const clap_event_header,
+        ) -> bool,
+    >,
 }
 
 unsafe impl Send for clap_output_events {}
