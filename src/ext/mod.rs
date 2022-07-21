@@ -16,3 +16,4 @@ pub mod tail;
 pub mod thread_check;
 pub mod thread_pool;
 pub mod timer_support;
+pub mod voice_info;
