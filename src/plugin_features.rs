@@ -9,6 +9,9 @@ pub const CLAP_PLUGIN_FEATURE_AUDIO_EFFECT: &CStr =
 pub const CLAP_PLUGIN_FEATURE_NOTE_EFFECT: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"note-effect\0") };
 
+pub const CLAP_PLUGIN_FEATURE_NOTE_DETECTOR: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"note-detector\0") };
+
 pub const CLAP_PLUGIN_FEATURE_ANALYZER: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"analyzer\0") };
 

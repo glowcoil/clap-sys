@@ -1,9 +1,9 @@
-use crate::{host::*, plugin::*};
+use crate::{host::*, id::*, plugin::*};
 
 use std::ffi::CStr;
 
 pub const CLAP_EXT_SURROUND: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.surround.draft/1\0") };
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.surround.draft/2\0") };
 
 pub const CLAP_PORT_SURROUND: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"surround\0") };
 
@@ -32,6 +32,7 @@ pub struct clap_plugin_surround {
     pub get_channel_map: Option<
         unsafe extern "C" fn(
             plugin: *const clap_plugin,
+            config_id: clap_id,
             is_input: bool,
             port_index: u32,
             channel_map: *mut u8,

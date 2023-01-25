@@ -56,7 +56,7 @@ pub struct clap_plugin_params {
         unsafe extern "C" fn(
             plugin: *const clap_plugin,
             param_id: clap_id,
-            value: *mut f64,
+            out_value: *mut f64,
         ) -> bool,
     >,
     pub value_to_text: Option<
@@ -64,16 +64,16 @@ pub struct clap_plugin_params {
             plugin: *const clap_plugin,
             param_id: clap_id,
             value: f64,
-            display: *mut c_char,
-            size: u32,
+            out_buffer: *mut c_char,
+            out_buffer_capacity: u32,
         ) -> bool,
     >,
     pub text_to_value: Option<
         unsafe extern "C" fn(
             plugin: *const clap_plugin,
             param_id: clap_id,
-            display: *const c_char,
-            value: *mut f64,
+            param_value_text: *const c_char,
+            out_value: *mut f64,
         ) -> bool,
     >,
     pub flush: Option<

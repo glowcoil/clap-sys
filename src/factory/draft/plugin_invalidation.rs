@@ -1,6 +1,9 @@
 use std::ffi::CStr;
 use std::os::raw::c_char;
 
+pub const CLAP_PLUGIN_INVALIDATION_FACTORY_ID: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.plugin-invalidation-factory/draft0\0") };
+
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_plugin_invalidation_source {
@@ -11,9 +14,6 @@ pub struct clap_plugin_invalidation_source {
 
 unsafe impl Send for clap_plugin_invalidation_source {}
 unsafe impl Sync for clap_plugin_invalidation_source {}
-
-pub const CLAP_PLUGIN_INVALIDATION_FACTORY_ID: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.plugin-invalidation-factory/draft0\0") };
 
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
