@@ -27,6 +27,9 @@ pub struct clap_host_preset_load {
             uri: *const c_char,
             os_error: i32,
             msg: *const c_char,
-        ) -> bool,
+        ),
+    >,
+    pub loaded: Option<
+        unsafe extern "C" fn(host: *const clap_host, uri: *const c_char, load_key: *const c_char),
     >,
 }
