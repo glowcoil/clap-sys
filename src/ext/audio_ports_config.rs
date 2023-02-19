@@ -1,3 +1,4 @@
+use crate::ext::audio_ports::*;
 use crate::{host::*, id::*, plugin::*, string_sizes::*};
 
 use std::ffi::CStr;
@@ -54,7 +55,7 @@ pub struct clap_plugin_audio_ports_config_info {
             config_id: clap_id,
             port_index: u32,
             is_input: bool,
-            config: *mut clap_audio_ports_config,
+            config: *mut clap_plugin_audio_ports,
         ) -> bool,
     >,
 }

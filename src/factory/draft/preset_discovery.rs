@@ -120,13 +120,13 @@ unsafe impl Sync for clap_preset_discovery_location {}
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_preset_discovery_soundpack {
-    pub flags: u32,
+    pub flags: u64,
     pub id: *const c_char,
     pub name: *const c_char,
     pub description: *const c_char,
     pub homepage_url: *const c_char,
     pub vendor: *const c_char,
-    pub image_url: *const c_char,
+    pub image_uri: *const c_char,
     pub release_timestamp: clap_timestamp,
 }
 

@@ -130,9 +130,9 @@ pub struct clap_host_context_menu {
         unsafe extern "C" fn(
             host: *const clap_host,
             target: *const clap_context_menu_target,
-            screen_index: u32,
-            x: u32,
-            y: u32,
+            screen_index: i32,
+            x: i32,
+            y: i32,
         ) -> bool,
     >,
 }
