@@ -55,7 +55,7 @@ pub struct clap_plugin_audio_ports_config_info {
             config_id: clap_id,
             port_index: u32,
             is_input: bool,
-            config: *mut clap_plugin_audio_ports,
+            config: *mut clap_audio_port_info,
         ) -> bool,
     >,
 }
