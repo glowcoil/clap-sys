@@ -1,9 +1,9 @@
-use crate::{host::*, id::*, plugin::*};
+use crate::{host::*, plugin::*};
 
 use std::ffi::CStr;
 
 pub const CLAP_EXT_AMBISONIC: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.ambisonic.draft/1\0") };
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.ambisonic.draft/2\0") };
 
 pub const CLAP_PORT_AMBISONIC: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ambisonic\0") };
@@ -30,7 +30,6 @@ pub struct clap_plugin_ambisonic {
     pub get_info: Option<
         unsafe extern "C" fn(
             plugin: *const clap_plugin,
-            config_id: clap_id,
             is_input: bool,
             port_index: u32,
             info: *mut clap_ambisonic_info,

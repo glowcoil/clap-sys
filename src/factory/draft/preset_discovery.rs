@@ -4,7 +4,12 @@ use std::ffi::{c_void, CStr};
 use std::os::raw::c_char;
 
 pub const CLAP_PRESET_DISCOVERY_FACTORY_ID: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.preset-discovery-factory/draft-1\0") };
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.preset-discovery-factory/draft-2\0") };
+
+pub const CLAP_PRESET_DISCOVERY_LOCATION_FILE: clap_preset_discovery_location_kind = 0;
+pub const CLAP_PRESET_DISCOVERY_LOCATION_PLUGIN: clap_preset_discovery_location_kind = 1;
+
+pub type clap_preset_discovery_location_kind = u32;
 
 pub const CLAP_PRESET_DISCOVERY_IS_FACTORY_CONTENT: u32 = 1 << 0;
 pub const CLAP_PRESET_DISCOVERY_IS_USER_CONTENT: u32 = 1 << 1;
@@ -111,7 +116,8 @@ unsafe impl Sync for clap_preset_discovery_filetype {}
 pub struct clap_preset_discovery_location {
     pub flags: u32,
     pub name: *const c_char,
-    pub uri: *const c_char,
+    pub kind: clap_preset_discovery_location_kind,
+    pub location: *const c_char,
 }
 
 unsafe impl Send for clap_preset_discovery_location {}
@@ -120,13 +126,13 @@ unsafe impl Sync for clap_preset_discovery_location {}
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_preset_discovery_soundpack {
-    pub flags: u64,
+    pub flags: u32,
     pub id: *const c_char,
     pub name: *const c_char,
     pub description: *const c_char,
     pub homepage_url: *const c_char,
     pub vendor: *const c_char,
-    pub image_uri: *const c_char,
+    pub image_path: *const c_char,
     pub release_timestamp: clap_timestamp,
 }
 
@@ -155,7 +161,8 @@ pub struct clap_preset_discovery_provider {
     pub get_metadata: Option<
         unsafe extern "C" fn(
             provider: *const clap_preset_discovery_provider,
-            uri: *const c_char,
+            location_kind: clap_preset_discovery_location_kind,
+            location: *const c_char,
             metadata_receiver: *const clap_preset_discovery_metadata_receiver,
         ) -> bool,
     >,

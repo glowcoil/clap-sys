@@ -47,6 +47,10 @@ pub const CLAP_PLUGIN_FEATURE_TRANSIENT_SHAPER: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"transient-shaper\0") };
 pub const CLAP_PLUGIN_FEATURE_COMPRESSOR: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"compressor\0") };
+pub const CLAP_PLUGIN_FEATURE_EXPANDER: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"expander\0") };
+pub const CLAP_PLUGIN_FEATURE_GATE: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"gate\0") };
 pub const CLAP_PLUGIN_FEATURE_LIMITER: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"limiter\0") };
 
