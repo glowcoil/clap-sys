@@ -1,3 +1,4 @@
+use crate::ext::audio_ports::*;
 use crate::{host::*, id::*, plugin::*, string_sizes::*};
 
 use std::ffi::CStr;
@@ -5,6 +6,8 @@ use std::os::raw::c_char;
 
 pub const CLAP_EXT_AUDIO_PORTS_CONFIG: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.audio-ports-config\0") };
+pub const CLAP_EXT_AUDIO_PORTS_CONFIG_INFO: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.audio-ports-config-info/draft-0\0") };
 
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -40,6 +43,21 @@ pub struct clap_plugin_audio_ports_config {
     >,
     pub select:
         Option<unsafe extern "C" fn(plugin: *const clap_plugin, config_id: clap_id) -> bool>,
+}
+
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct clap_plugin_audio_ports_config_info {
+    pub current_config: Option<unsafe extern "C" fn(plugin: *const clap_plugin) -> clap_id>,
+    pub get: Option<
+        unsafe extern "C" fn(
+            plugin: *const clap_plugin,
+            config_id: clap_id,
+            port_index: u32,
+            is_input: bool,
+            config: *mut clap_audio_port_info,
+        ) -> bool,
+    >,
 }
 
 #[repr(C)]

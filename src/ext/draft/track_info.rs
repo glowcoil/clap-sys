@@ -1,22 +1,26 @@
-use crate::{color::*, host::*, id::*, plugin::*, string_sizes::*};
+use crate::{color::*, host::*, plugin::*, string_sizes::*};
 
 use std::ffi::CStr;
 use std::os::raw::c_char;
 
 pub const CLAP_EXT_TRACK_INFO: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.track-info.draft/0\0") };
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.track-info.draft/1\0") };
+
+pub const CLAP_TRACK_INFO_HAS_TRACK_NAME: u64 = 1 << 0;
+pub const CLAP_TRACK_INFO_HAS_TRACK_COLOR: u64 = 1 << 1;
+pub const CLAP_TRACK_INFO_HAS_AUDIO_CHANNEL: u64 = 1 << 2;
+pub const CLAP_TRACK_INFO_IS_FOR_RETURN_TRACK: u64 = 1 << 3;
+pub const CLAP_TRACK_INFO_IS_FOR_BUS: u64 = 1 << 4;
+pub const CLAP_TRACK_INFO_IS_FOR_MASTER: u64 = 1 << 5;
 
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_track_info {
-    pub id: clap_id,
-    pub index: i32,
+    pub flags: u64,
     pub name: [c_char; CLAP_NAME_SIZE],
-    pub path: [c_char; CLAP_PATH_SIZE],
-    pub channel_count: i32,
-    pub audio_port_type: *const c_char,
     pub color: clap_color,
-    pub is_return_track: bool,
+    pub audio_channel_count: i32,
+    pub audio_port_type: *const c_char,
 }
 
 unsafe impl Send for clap_track_info {}

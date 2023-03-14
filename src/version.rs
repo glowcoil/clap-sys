@@ -1,5 +1,7 @@
+// Instead of providing the `CLAP_VERSION_LT`, `CLAP_VERSION_EQ`, and `CLAP_VERSION_GE` macros,
+// we'll derive `Eq` and `Ord` so you can make readable inline comparisons to `CLAP_VERSION`
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, PartialOrd, Ord)]
 pub struct clap_version {
     pub major: u32,
     pub minor: u32,
@@ -8,7 +10,7 @@ pub struct clap_version {
 
 pub const CLAP_VERSION_MAJOR: u32 = 1;
 pub const CLAP_VERSION_MINOR: u32 = 1;
-pub const CLAP_VERSION_REVISION: u32 = 2;
+pub const CLAP_VERSION_REVISION: u32 = 7;
 
 pub const CLAP_VERSION: clap_version = clap_version {
     major: CLAP_VERSION_MAJOR,
