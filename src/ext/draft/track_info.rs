@@ -1,10 +1,9 @@
-use crate::{color::*, host::*, plugin::*, string_sizes::*};
+use crate::{color::*, cstr, host::*, plugin::*, string_sizes::*};
 
 use std::ffi::CStr;
 use std::os::raw::c_char;
 
-pub const CLAP_EXT_TRACK_INFO: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.track-info.draft/1\0") };
+pub const CLAP_EXT_TRACK_INFO: &CStr = cstr!("clap.track-info.draft/1");
 
 pub const CLAP_TRACK_INFO_HAS_TRACK_NAME: u64 = 1 << 0;
 pub const CLAP_TRACK_INFO_HAS_TRACK_COLOR: u64 = 1 << 1;

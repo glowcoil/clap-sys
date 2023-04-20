@@ -1,9 +1,8 @@
-use crate::{host::*, plugin::*};
+use crate::{cstr, host::*, plugin::*};
 
 use std::ffi::CStr;
 
-pub const CLAP_EXT_POSIX_FD_SUPPORT: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.posix-fd-support\0") };
+pub const CLAP_EXT_POSIX_FD_SUPPORT: &CStr = cstr!("clap.posix-fd-support");
 
 pub const CLAP_POSIX_FD_READ: clap_posix_fd_flags = 1 << 0;
 pub const CLAP_POSIX_FD_WRITE: clap_posix_fd_flags = 1 << 1;

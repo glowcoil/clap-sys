@@ -1,10 +1,9 @@
-use crate::{host::*, plugin::*};
+use crate::{cstr, host::*, plugin::*};
 
 use std::ffi::CStr;
 use std::os::raw::c_char;
 
-pub const CLAP_PLUGIN_FACTORY_ID: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.plugin-factory\0") };
+pub const CLAP_PLUGIN_FACTORY_ID: &CStr = cstr!("clap.plugin-factory");
 
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]

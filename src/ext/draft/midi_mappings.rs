@@ -1,9 +1,8 @@
-use crate::{host::*, id::*, plugin::*};
+use crate::{cstr, host::*, id::*, plugin::*};
 
 use std::ffi::CStr;
 
-pub const CLAP_EXT_MIDI_MAPPINGS: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.midi-mappings.draft/0\0") };
+pub const CLAP_EXT_MIDI_MAPPINGS: &CStr = cstr!("clap.midi-mappings.draft/0");
 
 pub const CLAP_MIDI_MAPPING_CC7: clap_midi_mapping_type = 0;
 pub const CLAP_MIDI_MAPPING_CC14: clap_midi_mapping_type = 1;

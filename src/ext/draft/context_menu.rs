@@ -1,10 +1,9 @@
-use crate::{host::*, id::*, plugin::*};
+use crate::{cstr, host::*, id::*, plugin::*};
 
 use std::ffi::{c_void, CStr};
 use std::os::raw::c_char;
 
-pub const CLAP_EXT_CONTEXT_MENU: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.context-menu.draft/0\0") };
+pub const CLAP_EXT_CONTEXT_MENU: &CStr = cstr!("clap.context-menu.draft/0");
 
 pub const CLAP_CONTEXT_MENU_TARGET_KIND_GLOBAL: u32 = 0;
 pub const CLAP_CONTEXT_MENU_TARGET_KIND_PARAM: u32 = 1;

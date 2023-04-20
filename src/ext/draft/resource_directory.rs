@@ -1,10 +1,9 @@
-use crate::{host::*, plugin::*};
+use crate::{cstr, host::*, plugin::*};
 
 use std::ffi::CStr;
 use std::os::raw::c_char;
 
-pub const CLAP_EXT_RESOURCE_DIRECTORY: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.resource-directory.draft/0\0") };
+pub const CLAP_EXT_RESOURCE_DIRECTORY: &CStr = cstr!("clap.resource-directory.draft/0");
 
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]

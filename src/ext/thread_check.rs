@@ -1,9 +1,8 @@
-use crate::host::*;
+use crate::{cstr, host::*};
 
 use std::ffi::CStr;
 
-pub const CLAP_EXT_THREAD_CHECK: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.thread-check\0") };
+pub const CLAP_EXT_THREAD_CHECK: &CStr = cstr!("clap.thread-check");
 
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]

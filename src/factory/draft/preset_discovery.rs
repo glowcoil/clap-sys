@@ -1,10 +1,9 @@
-use crate::version::*;
+use crate::{cstr, version::*};
 
 use std::ffi::{c_void, CStr};
 use std::os::raw::c_char;
 
-pub const CLAP_PRESET_DISCOVERY_FACTORY_ID: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.preset-discovery-factory/draft-2\0") };
+pub const CLAP_PRESET_DISCOVERY_FACTORY_ID: &CStr = cstr!("clap.preset-discovery-factory/draft-2");
 
 pub const CLAP_PRESET_DISCOVERY_LOCATION_FILE: clap_preset_discovery_location_kind = 0;
 pub const CLAP_PRESET_DISCOVERY_LOCATION_PLUGIN: clap_preset_discovery_location_kind = 1;

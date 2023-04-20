@@ -1,10 +1,9 @@
-use crate::{color::*, id::*, plugin::*};
+use crate::{color::*, cstr, id::*, plugin::*};
 
 use std::ffi::CStr;
 use std::os::raw::c_char;
 
-pub const CLAP_EXT_PARAM_INDICATION: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.param-indication.draft/4\0") };
+pub const CLAP_EXT_PARAM_INDICATION: &CStr = cstr!("clap.param-indication.draft/4");
 
 pub const CLAP_PARAM_INDICATION_AUTOMATION_NONE: u32 = 0;
 pub const CLAP_PARAM_INDICATION_AUTOMATION_PRESENT: u32 = 1;

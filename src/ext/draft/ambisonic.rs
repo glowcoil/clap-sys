@@ -1,12 +1,10 @@
-use crate::{host::*, plugin::*};
+use crate::{cstr, host::*, plugin::*};
 
 use std::ffi::CStr;
 
-pub const CLAP_EXT_AMBISONIC: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.ambisonic.draft/2\0") };
+pub const CLAP_EXT_AMBISONIC: &CStr = cstr!("clap.ambisonic.draft/2");
 
-pub const CLAP_PORT_AMBISONIC: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"ambisonic\0") };
+pub const CLAP_PORT_AMBISONIC: &CStr = cstr!("ambisonic");
 
 pub const CLAP_AMBISONIC_FUMA: u32 = 0;
 pub const CLAP_AMBISONIC_ACN: u32 = 1;

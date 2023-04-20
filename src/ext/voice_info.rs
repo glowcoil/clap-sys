@@ -1,9 +1,8 @@
-use crate::{host::*, plugin::*};
+use crate::{cstr, host::*, plugin::*};
 
 use std::ffi::CStr;
 
-pub const CLAP_EXT_VOICE_INFO: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.voice-info\0") };
+pub const CLAP_EXT_VOICE_INFO: &CStr = cstr!("clap.voice-info");
 
 pub const CLAP_VOICE_INFO_SUPPORTS_OVERLAPPING_NOTES: u64 = 1 << 0;
 
