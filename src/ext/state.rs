@@ -1,8 +1,8 @@
-use crate::{host::*, plugin::*, stream::*};
+use crate::{cstr, host::*, plugin::*, stream::*};
 
 use std::ffi::CStr;
 
-pub const CLAP_EXT_STATE: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.state\0") };
+pub const CLAP_EXT_STATE: &CStr = cstr!("clap.state");
 
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]

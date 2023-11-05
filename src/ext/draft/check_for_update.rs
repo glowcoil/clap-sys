@@ -1,10 +1,9 @@
-use crate::{host::*, plugin::*};
+use crate::{cstr, host::*, plugin::*};
 
 use std::ffi::CStr;
 use std::os::raw::c_char;
 
-pub const CLAP_EXT_CHECK_FOR_UPDATE: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.check_for_update.draft/0\0") };
+pub const CLAP_EXT_CHECK_FOR_UPDATE: &CStr = cstr!("clap.check_for_update.draft/0");
 
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]

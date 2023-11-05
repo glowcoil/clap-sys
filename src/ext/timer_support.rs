@@ -1,9 +1,8 @@
-use crate::{host::*, id::*, plugin::*};
+use crate::{cstr, host::*, id::*, plugin::*};
 
 use std::ffi::CStr;
 
-pub const CLAP_EXT_TIMER_SUPPORT: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.timer-support\0") };
+pub const CLAP_EXT_TIMER_SUPPORT: &CStr = cstr!("clap.timer-support");
 
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]

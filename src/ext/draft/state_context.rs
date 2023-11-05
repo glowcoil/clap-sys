@@ -1,9 +1,8 @@
-use crate::{plugin::*, stream::*};
+use crate::{cstr, plugin::*, stream::*};
 
 use std::ffi::CStr;
 
-pub const CLAP_EXT_STATE_CONTEXT: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.state-context.draft/1\0") };
+pub const CLAP_EXT_STATE_CONTEXT: &CStr = cstr!("clap.state-context.draft/1");
 
 pub const CLAP_STATE_CONTEXT_FOR_DUPLICATE: clap_plugin_state_context_type = 1;
 pub const CLAP_STATE_CONTEXT_FOR_PRESET: clap_plugin_state_context_type = 2;

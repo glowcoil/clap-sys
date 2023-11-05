@@ -1,11 +1,10 @@
 use crate::factory::draft::preset_discovery::*;
-use crate::{host::*, plugin::*};
+use crate::{cstr, host::*, plugin::*};
 
 use std::ffi::CStr;
 use std::os::raw::c_char;
 
-pub const CLAP_EXT_PRESET_LOAD: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.preset-load.draft/2\0") };
+pub const CLAP_EXT_PRESET_LOAD: &CStr = cstr!("clap.preset-load.draft/2");
 
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]

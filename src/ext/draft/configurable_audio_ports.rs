@@ -1,9 +1,8 @@
-use crate::plugin::*;
+use crate::{cstr, plugin::*};
 
 use std::ffi::{c_char, c_void, CStr};
 
-pub const CLAP_EXT_CONFIGURABLE_AUDIO_PORTS: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.configurable-audio-ports.draft0\0") };
+pub const CLAP_EXT_CONFIGURABLE_AUDIO_PORTS: &CStr = cstr!("clap.configurable-audio-ports.draft0");
 
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]

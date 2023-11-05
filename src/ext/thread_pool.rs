@@ -1,9 +1,8 @@
-use crate::{host::*, plugin::*};
+use crate::{cstr, host::*, plugin::*};
 
 use std::ffi::CStr;
 
-pub const CLAP_EXT_THREAD_POOL: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.thread-pool\0") };
+pub const CLAP_EXT_THREAD_POOL: &CStr = cstr!("clap.thread-pool");
 
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]

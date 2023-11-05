@@ -1,9 +1,8 @@
-use crate::{host::*, plugin::*};
+use crate::{cstr, host::*, plugin::*};
 
 use std::ffi::CStr;
 
-pub const CLAP_EXT_LATENCY: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.latency\0") };
+pub const CLAP_EXT_LATENCY: &CStr = cstr!("clap.latency");
 
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]

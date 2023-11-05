@@ -1,11 +1,10 @@
-use crate::{host::*, plugin::*};
+use crate::{cstr, host::*, plugin::*};
 
 use std::ffi::CStr;
 
-pub const CLAP_EXT_SURROUND: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.surround.draft/3\0") };
+pub const CLAP_EXT_SURROUND: &CStr = cstr!("clap.surround.draft/3");
 
-pub const CLAP_PORT_SURROUND: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"surround\0") };
+pub const CLAP_PORT_SURROUND: &CStr = cstr!("surround");
 
 pub const CLAP_SURROUND_FL: u32 = 0;
 pub const CLAP_SURROUND_FR: u32 = 1;

@@ -1,8 +1,10 @@
+use crate::cstr;
+
 use std::ffi::CStr;
 use std::os::raw::c_char;
 
 pub const CLAP_PLUGIN_INVALIDATION_FACTORY_ID: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"clap.plugin-invalidation-factory/draft0\0") };
+    cstr!("clap.plugin-invalidation-factory/draft0");
 
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
