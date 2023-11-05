@@ -18,10 +18,6 @@ pub struct clap_plugin_extensible_audio_ports {
         ) -> bool,
     >,
     pub remove_port: Option<
-        unsafe extern "C" fn(
-            plugin: *const clap_plugin,
-            is_input: bool,
-            channel_count: u32,
-        ) -> bool,
+        unsafe extern "C" fn(plugin: *const clap_plugin, is_input: bool, index: u32) -> bool,
     >,
 }

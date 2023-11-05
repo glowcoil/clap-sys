@@ -13,7 +13,7 @@ pub struct clap_audio_port_configuration_request {
     pub port_index: u32,
     pub channel_count: u32,
     pub port_type: *const c_char,
-    pub port_details: *const c_char,
+    pub port_details: *const c_void,
 }
 
 unsafe impl Send for clap_audio_port_configuration_request {}
