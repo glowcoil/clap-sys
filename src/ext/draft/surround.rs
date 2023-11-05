@@ -2,7 +2,7 @@ use crate::{cstr, host::*, plugin::*};
 
 use std::ffi::CStr;
 
-pub const CLAP_EXT_SURROUND: &CStr = cstr!("clap.surround.draft/3");
+pub const CLAP_EXT_SURROUND: &CStr = cstr!("clap.surround.draft/4");
 
 pub const CLAP_PORT_SURROUND: &CStr = cstr!("surround");
 
@@ -28,6 +28,8 @@ pub const CLAP_SURROUND_TBR: u32 = 17;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct clap_plugin_surround {
+    pub is_channel_mask_supported:
+        Option<unsafe extern "C" fn(plugin: *const clap_plugin, channel_mask: u64) -> bool>,
     pub get_channel_map: Option<
         unsafe extern "C" fn(
             plugin: *const clap_plugin,
@@ -37,7 +39,6 @@ pub struct clap_plugin_surround {
             channel_map_capacity: u32,
         ) -> u32,
     >,
-    pub changed: Option<unsafe extern "C" fn(plugin: *const clap_plugin)>,
 }
 
 #[repr(C)]
