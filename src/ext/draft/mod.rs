@@ -1,8 +1,10 @@
 pub mod ambisonic;
 pub mod audio_ports_activation;
 pub mod check_for_update;
+pub mod configurable_audio_ports;
 pub mod context_menu;
 pub mod cv;
+pub mod extensible_audio_ports;
 pub mod midi_mappings;
 pub mod param_indication;
 pub mod preset_load;
