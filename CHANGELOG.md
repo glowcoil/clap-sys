@@ -1,3 +1,7 @@
+# 0.4.0
+
+- Update to CLAP version 1.1.9.
+
 # 0.3.0
 
 - Update to CLAP version 1.0.3.
