@@ -1,10 +1,10 @@
-use crate::{cstr, events::*, host::*, id::*, plugin::*, string_sizes::*};
+use crate::{events::*, host::*, id::*, plugin::*, string_sizes::*};
 
+use std::ffi::c_char;
 use std::ffi::c_void;
 use std::ffi::CStr;
-use std::os::raw::c_char;
 
-pub const CLAP_EXT_PARAMS: &CStr = cstr!("clap.params");
+pub const CLAP_EXT_PARAMS: &CStr = c"clap.params";
 
 pub const CLAP_PARAM_IS_STEPPED: clap_param_info_flags = 1 << 0;
 pub const CLAP_PARAM_IS_PERIODIC: clap_param_info_flags = 1 << 1;
@@ -22,6 +22,7 @@ pub const CLAP_PARAM_IS_MODULATABLE_PER_KEY: clap_param_info_flags = 1 << 12;
 pub const CLAP_PARAM_IS_MODULATABLE_PER_CHANNEL: clap_param_info_flags = 1 << 13;
 pub const CLAP_PARAM_IS_MODULATABLE_PER_PORT: clap_param_info_flags = 1 << 14;
 pub const CLAP_PARAM_REQUIRES_PROCESS: clap_param_info_flags = 1 << 15;
+pub const CLAP_PARAM_IS_ENUM: clap_param_info_flags = 1 << 16;
 
 pub type clap_param_info_flags = u32;
 
